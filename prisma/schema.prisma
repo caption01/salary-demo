@@ -1,0 +1,102 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Company {
+  id   Int    @id @default(autoincrement())
+  name String @db.VarChar(255)
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  CompanyAdmin    CompanyAdmin[]
+  Employee        Employee[]
+  TransferRequest TransferRequest[]
+}
+
+model CompanyAdmin {
+  id Int @id @default(autoincrement())
+
+  user       User    @relation(fields: [user_id], references: [id])
+  user_id    Int
+  company    Company @relation(fields: [company_id], references: [id])
+  company_id Int
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  Employee Employee[]
+}
+
+model Employee {
+  id          Int    @id @default(autoincrement())
+  firstname   String @db.VarChar(255)
+  lastname    String @db.VarChar(255)
+  base_salary Int
+
+  company          Company       @relation(fields: [company_id], references: [id])
+  company_id       Int
+  created_by       User          @relation(fields: [user_id], references: [id])
+  user_id          Int
+  company_admin    CompanyAdmin? @relation(fields: [company_admin_id], references: [id])
+  company_admin_id Int?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  TransferRequest TransferRequest[]
+}
+
+model TransferRequest {
+  id       Int     @id @default(autoincrement())
+  amount   Int
+  approved Boolean @default(false)
+
+  company     Company  @relation(fields: [company_id], references: [id])
+  company_id  Int
+  approved_by User     @relation(fields: [user_id], references: [id])
+  user_id     Int
+  employee    Employee @relation(fields: [employee_id], references: [id])
+  employee_id Int
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+model User {
+  id             Int     @id @default(autoincrement())
+  is_super_admin Boolean @default(false)
+  username       String  @unique @db.VarChar(255)
+  password       String  @unique @db.VarChar(255)
+  firstname      String  @db.VarChar(255)
+  lastname       String  @db.VarChar(255)
+
+  role    Role @relation(fields: [role_id], references: [id])
+  role_id Int
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  CompanyAdmin    CompanyAdmin[]
+  Employee        Employee[]
+  TransferRequest TransferRequest[]
+}
+
+model Role {
+  id    Int    @id @default(autoincrement())
+  level Int    @unique
+  title String @unique
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+
+  User User[]
+}
