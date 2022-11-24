@@ -37,15 +37,13 @@ model CompanyAdmin {
 }
 
 model Employee {
-  id          Int    @id @default(autoincrement())
-  firstname   String @db.VarChar(255)
-  lastname    String @db.VarChar(255)
+  id          Int @id @default(autoincrement())
   base_salary Int
 
+  user             User          @relation(fields: [user_id], references: [id])
+  user_id          Int
   company          Company       @relation(fields: [company_id], references: [id])
   company_id       Int
-  created_by       User          @relation(fields: [user_id], references: [id])
-  user_id          Int
   company_admin    CompanyAdmin? @relation(fields: [company_admin_id], references: [id])
   company_admin_id Int?
 
@@ -91,12 +89,19 @@ model User {
 }
 
 model Role {
-  id    Int    @id @default(autoincrement())
-  level Int    @unique
-  title String @unique
+  id    Int       @id @default(autoincrement())
+  level Int       @unique
+  title String    @unique
+  role  RoleLevel
 
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
 
   User User[]
+}
+
+enum RoleLevel {
+  SUPER_ADMIN
+  CLIENT_ADMIN
+  EMPLOYEE
 }

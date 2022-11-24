@@ -3,18 +3,19 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function seedUserRoles() {
-  const ROLES = [
-    { level: 0, title: 'super_admin' },
-    { level: 10, title: 'system_admin' },
+  const roles = [
+    { level: 1, title: 'super_admin', role: 'SUPER_ADMIN' },
+    { level: 10, title: 'client_admin', role: 'CLIENT_ADMIN' },
+    { level: 100, title: 'employee', role: 'EMPLOYEE' },
   ];
 
-  return await prisma.role.createMany({ data: ROLES });
+  return await prisma.role.createMany({ data: roles });
 }
 
 async function seedSalaryHeroAdmin() {
   const superAdminRole = await prisma.role.findFirst({
     where: {
-      level: 0,
+      role: 'SUPER_ADMIN',
     },
   });
 
@@ -35,9 +36,9 @@ async function seedSalaryHeroAdmin() {
 }
 
 async function seedClientAdmin() {
-  const systemAdminRole = await prisma.role.findFirst({
+  const clientAdminRole = await prisma.role.findFirst({
     where: {
-      level: 10,
+      role: 'CLIENT_ADMIN',
     },
   });
 
@@ -49,7 +50,7 @@ async function seedClientAdmin() {
     lastname: 'natacha',
     role: {
       connect: {
-        id: systemAdminRole.id,
+        id: clientAdminRole.id,
       },
     },
   };
@@ -83,44 +84,72 @@ async function seedCompanyAdmin(company, clientAdmin) {
 }
 
 async function seedEmployee(company, clientAdmin) {
+  const employeeRole = await prisma.role.findFirst({
+    where: {
+      role: 'EMPLOYEE',
+    },
+  });
+
   const employees = [
     {
       firstname: 'Doretta',
       lastname: 'Kestrel',
+      username: 'doretta',
+      password: '1111',
       base_salary: 20000,
-      company,
-      createdBy: clientAdmin,
+      company: company,
+      company_admin: clientAdmin,
     },
     {
       firstname: 'Ernestine',
       lastname: 'Penelope',
+      username: 'ernestine',
+      password: '2222',
       base_salary: 20000,
-      company,
-      createdBy: clientAdmin,
+      company: company,
+      company_admin: clientAdmin,
     },
     {
       firstname: 'Lucy',
       lastname: 'Stefani',
+      username: 'lucy',
+      password: '3333',
       base_salary: 20000,
-      company,
-      createdBy: clientAdmin,
+      company: company,
+      company_admin: clientAdmin,
     },
   ];
 
   return employees.forEach(async (employee) => {
     await prisma.employee.create({
       data: {
-        firstname: employee.firstname,
-        lastname: employee.lastname,
         base_salary: employee.base_salary,
+        user: {
+          connectOrCreate: {
+            where: {
+              username: employee.username,
+            },
+            create: {
+              username: employee.username,
+              password: employee.password,
+              firstname: employee.firstname,
+              lastname: employee.lastname,
+              role: {
+                connect: {
+                  id: employeeRole.id,
+                },
+              },
+            },
+          },
+        },
         company: {
           connect: {
             id: employee.company.id,
           },
         },
-        created_by: {
+        company_admin: {
           connect: {
-            id: employee.createdBy.id,
+            id: employee.company_admin.id,
           },
         },
       },
@@ -135,8 +164,8 @@ async function main() {
   const clientAdmin = await seedClientAdmin();
   const company = await seedCompany();
 
-  await seedCompanyAdmin(company, clientAdmin);
-  await seedEmployee(company, clientAdmin);
+  const companyAdmin = await seedCompanyAdmin(company, clientAdmin);
+  await seedEmployee(company, companyAdmin);
 }
 main()
   .then(async () => {
