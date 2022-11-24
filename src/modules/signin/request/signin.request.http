@@ -1,0 +1,8 @@
+### Signin
+POST http://localhost:3001/signin
+Content-Type: application/json
+
+{
+    "username": "salaryhero",
+    "password": "salaryhero123"
+}
