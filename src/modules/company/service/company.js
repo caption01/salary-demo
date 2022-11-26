@@ -1,42 +1,27 @@
-const { prisma } = require('../../../services/prisma');
+const { Company } = require('../../../models');
 
-class Company {
-  self = null;
-
-  constructor(self) {
-    this.self = self;
+class CompanyService {
+  async getOne(id) {
+    return await new Company().find(id);
   }
 
-  static async init(id) {
-    const company = await prisma.company.findFirst({
-      where: {
-        id: parseInt(id),
-      },
-    });
-
-    if (!company) {
-      return null;
-    }
-
-    return new Company(company);
+  async getAll() {
+    return await new Company().findAll();
   }
 
-  static async create(data) {
-    return await prisma.company.create({ data });
+  async createCompany(data) {
+    return await new Company().create(data);
   }
 
-  async update(data) {
-    const companyId = this.self.id;
-    return await prisma.company.update({
-      where: { id: companyId },
-      data: data,
-    });
+  async updateCompany(id, data) {
+    const company = await Company.init(id);
+    return await company.update(data);
   }
 
-  async remove() {
-    const companyId = this.self.id;
-    return await prisma.company.delete({ where: { id: companyId } });
+  async removeCompany(id) {
+    const company = await Company.init(id);
+    return await company.remove();
   }
 }
 
-module.exports = Company;
+module.exports = CompanyService;
