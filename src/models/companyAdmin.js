@@ -45,15 +45,6 @@ class CompanyAdmin {
     const companyAdminId = this.self.id;
     return await prisma.companyAdmin.delete({ where: { id: companyAdminId } });
   }
-
-  async findAdminInCompany(userId, companyId) {
-    return await prisma.companyAdmin.findFirst({
-      where: {
-        user_id: userId,
-        company_id: companyId,
-      },
-    });
-  }
 }
 
 module.exports = CompanyAdmin;

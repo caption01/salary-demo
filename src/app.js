@@ -8,6 +8,7 @@ const authenticate = require('./middlewares/authenticate/authenticate');
 const signinRouter = require('./modules/signin/route');
 const superAdminRouter = require('./modules/superadmin/route');
 const companyRouter = require('./modules/company/route');
+const employeeRouter = require('./modules/employee/route');
 
 function run(port) {
   const app = express();
@@ -28,6 +29,7 @@ function run(port) {
   // private-routers
   app.use('/superadmin', superAdminRouter);
   app.use('/company', companyRouter);
+  app.use('/employee', employeeRouter);
 
   app.all('*', (req, res) => {
     throw new NotFoundError();

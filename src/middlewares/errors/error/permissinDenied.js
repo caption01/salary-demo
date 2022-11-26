@@ -2,16 +2,18 @@ const CustomError = require('./customError');
 
 class PermissinDenied extends CustomError {
   statusCode = 403;
+  message = '';
 
-  constructor() {
-    super('Permissin Denied');
+  constructor(message = 'Permissin Denied') {
+    super(message);
     Object.setPrototypeOf(this, PermissinDenied.prototype);
+    this.message = message;
   }
 
   serializeErrors() {
     return [
       {
-        message: 'Permissin Denied',
+        message: this.message,
       },
     ];
   }
