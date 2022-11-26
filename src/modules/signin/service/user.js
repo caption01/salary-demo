@@ -1,24 +1,23 @@
-const { prisma } = require('../../../services/prisma');
 const { User } = require('../../../models');
 
 class UserService {
-  async isUserExist(user) {
-    const userId = user.id;
+  async getOne(args) {
+    return await new User().find(args);
+  }
 
-    if (userId) {
-      return await new User().find(id);
-    }
-
-    const data = {
+  async isUserUnique(userData) {
+    const args = {
       where: {
-        username: user.username,
-        password: user.password,
-        firstname: user.firstname,
-        lastname: user.lastname,
+        username: userData.username,
+        password: userData.password,
+        firstname: userData.firstname,
+        lastname: userData.lastname,
       },
     };
 
-    return await new User().findWith(data);
+    const foundUser = Boolean(await new User().find(args));
+
+    return !foundUser;
   }
 }
 

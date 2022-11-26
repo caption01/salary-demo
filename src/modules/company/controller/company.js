@@ -4,13 +4,18 @@ const CompanyAdminService = require('../service/companyAdmin');
 const UserService = require('../../signin/service/user');
 
 async function getAllCompany(req, res) {
-  const companies = await new CompanyService().getAll();
+  const companies = await new CompanyService().getAll({
+    include: { Employee: true, CompanyAdmin: true },
+  });
+
   res.json({ data: companies });
 }
 
 async function getCompany(req, res) {
-  const id = req.params.id;
-  const company = await new CompanyService().getOne(parseInt(id));
+  const id = parseInt(req.params.id);
+  const company = await new CompanyService().getOne(id, {
+    include: { Employee: true, CompanyAdmin: true },
+  });
 
   if (!company) {
     throw new QueryNotFound('company not found', 'id');
@@ -21,9 +26,9 @@ async function getCompany(req, res) {
 
 async function createCompany(req, res) {
   const body = req.body;
-  const companyData = { name: body.name };
+  const createArgs = { data: { name: body.name } };
 
-  const company = await new CompanyService().createCompany(companyData);
+  const company = await new CompanyService().createCompany(createArgs);
 
   res.json({ success: true, data: company });
 }
@@ -31,7 +36,7 @@ async function createCompany(req, res) {
 async function updateCompany(req, res) {
   const id = parseInt(req.params.id);
   const body = req.body;
-  const companyData = { name: body.name };
+  const updateArgs = { data: { name: body.name } };
 
   const service = new CompanyService();
 
@@ -41,7 +46,7 @@ async function updateCompany(req, res) {
     throw new QueryNotFound('company not found', 'id');
   }
 
-  company = await service.updateCompany(id, companyData);
+  company = await service.updateCompany(id, updateArgs);
 
   res.json({ success: true, data: company });
 }
@@ -64,8 +69,8 @@ async function deleteCompany(req, res) {
 
 async function addClientAdminCompany(req, res) {
   const companyId = parseInt(req.params.id);
-  const userData = req.body;
-  const userId = parseInt(userData.id);
+  const { id, ...userData } = req.body;
+  const userId = parseInt(id);
 
   const companyService = new CompanyService();
   const companyAdminService = new CompanyAdminService();
@@ -78,9 +83,9 @@ async function addClientAdminCompany(req, res) {
   }
 
   if (!userId) {
-    const user = await userService.isUserExist(userData);
+    const isUniqe = await userService.isUserUnique(userData);
 
-    if (user) {
+    if (!isUniqe) {
       throw new Error('user data must be unique');
     }
 

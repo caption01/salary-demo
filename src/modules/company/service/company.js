@@ -1,22 +1,22 @@
-const { Company, User, Role } = require('../../../models');
+const { Company } = require('../../../models');
 const { ROLE } = require('../../../services/prisma');
 
 class CompanyService {
-  async getOne(id) {
-    return await new Company().find(id);
+  async getOne(id, findArgs) {
+    return await new Company().find(id, findArgs);
   }
 
-  async getAll() {
-    return await new Company().findAll();
+  async getAll(findAllArgs) {
+    return await new Company().findAll(findAllArgs);
   }
 
-  async createCompany(data) {
-    return await new Company().create(data);
+  async createCompany(createArgs) {
+    return await new Company().create(createArgs);
   }
 
-  async updateCompany(id, data) {
+  async updateCompany(id, updateArgs) {
     const company = await Company.init(id);
-    return await company.update(data);
+    return await company.update(updateArgs);
   }
 
   async removeCompany(id) {
@@ -24,25 +24,52 @@ class CompanyService {
     return await company.remove();
   }
 
-  async addUserAdminToCompany(id, userId) {
-    const company = await Company.init(id);
-    return await company.addAdmin(userId);
-  }
-
   async createUserAdminAndAddToCompany(id, userData) {
     const adminRole = ROLE.CLIENT_ADMIN;
 
-    const company = await Company.init(id);
-
-    const user = {
-      username: userData.username,
-      password: userData.password,
-      firstname: userData.firstname,
-      lastname: userData.lastname,
-      role: adminRole,
+    const createNewAdminArgs = {
+      data: {
+        CompanyAdmin: {
+          create: {
+            user: {
+              create: {
+                username: userData.username,
+                password: userData.password,
+                firstname: userData.firstname,
+                lastname: userData.lastname,
+                role: {
+                  connect: {
+                    role: adminRole,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     };
 
-    return await company.createNewAdmin(user);
+    const company = await Company.init(id);
+    return await company.update(createNewAdminArgs);
+  }
+
+  async addUserAdminToCompany(id, userId) {
+    const addAdminArgs = {
+      data: {
+        CompanyAdmin: {
+          create: {
+            user: {
+              connect: {
+                id: userId,
+              },
+            },
+          },
+        },
+      },
+    };
+
+    const company = await Company.init(id);
+    return await company.update(addAdminArgs);
   }
 }
 

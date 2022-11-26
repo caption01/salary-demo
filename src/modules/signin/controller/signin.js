@@ -1,11 +1,14 @@
 const { prisma } = require('../../../services/prisma');
 const QueryNotfound = require('../../../middlewares/errors/error/queryNotfound');
 const { signJwt } = require('../../../services/jwt');
+const UserService = require('../service/user');
 
 async function signin(req, res, next) {
   const body = req.body;
 
-  const user = await prisma.user.findFirst({
+  const userService = new UserService();
+
+  const user = await userService.getOne({
     where: { username: body.username },
     include: { role: { select: { id: true, level: true, role: true } } },
   });

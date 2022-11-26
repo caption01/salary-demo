@@ -15,7 +15,6 @@ class Role {
     });
 
     if (!role) {
-      new Role(null);
       return null;
     }
 

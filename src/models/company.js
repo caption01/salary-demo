@@ -10,90 +10,43 @@ class Company {
   static async init(id) {
     const company = await prisma.company.findFirst({
       where: {
-        id: parseInt(id),
+        id: id,
       },
     });
 
     if (!company) {
-      new Company(null);
       return null;
     }
 
     return new Company(company);
   }
 
-  async find(id) {
+  async find(id, findArgs) {
     return await prisma.company.findFirst({
       where: { id: id },
-      include: { Employee: true, CompanyAdmin: true },
+      ...findArgs,
     });
   }
 
-  async findAll() {
-    return await prisma.company.findMany({
-      include: { Employee: true, CompanyAdmin: true },
-    });
+  async findAll(findAllArgs) {
+    return await prisma.company.findMany(findAllArgs);
   }
 
-  async create(data) {
-    return await prisma.company.create({ data });
+  async create(createArgs) {
+    return await prisma.company.create(createArgs);
   }
 
-  async update(data) {
+  async update(updateArgs) {
     const companyId = this.self.id;
     return await prisma.company.update({
       where: { id: companyId },
-      data: data,
+      ...updateArgs,
     });
   }
 
   async remove() {
     const companyId = this.self.id;
     return await prisma.company.delete({ where: { id: companyId } });
-  }
-
-  async addAdmin(userId) {
-    const companyId = this.self.id;
-    return await prisma.company.update({
-      where: { id: companyId },
-      data: {
-        CompanyAdmin: {
-          create: {
-            user: {
-              connect: {
-                id: userId,
-              },
-            },
-          },
-        },
-      },
-    });
-  }
-
-  async createNewAdmin(user) {
-    const companyId = this.self.id;
-    return await prisma.company.update({
-      where: { id: companyId },
-      data: {
-        CompanyAdmin: {
-          create: {
-            user: {
-              create: {
-                username: user.username,
-                password: user.password,
-                firstname: user.firstname,
-                lastname: user.lastname,
-                role: {
-                  connect: {
-                    role: user.role,
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    });
   }
 }
 

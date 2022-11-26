@@ -10,35 +10,34 @@ class CompanyAdmin {
   static async init(id) {
     const companyAdmin = await prisma.companyAdmin.findFirst({
       where: {
-        id: parseInt(id),
+        id: id,
       },
     });
 
     if (!companyAdmin) {
-      new CompanyAdmin(null);
       return null;
     }
 
     return new CompanyAdmin(companyAdmin);
   }
 
-  async find(id) {
-    return await prisma.companyAdmin.findFirst({ where: { id: id } });
+  async find(findArgs) {
+    return await prisma.companyAdmin.findFirst(findArgs);
   }
 
-  async findAll() {
-    return await prisma.companyAdmin.findMany();
+  async findAll(findAllArgs) {
+    return await prisma.companyAdmin.findMany(findAllArgs);
   }
 
-  async create(data) {
-    return await prisma.companyAdmin.create({ data });
+  async create(createArgs) {
+    return await prisma.companyAdmin.create(createArgs);
   }
 
-  async update(data) {
+  async update(updateArgs) {
     const companyAdminId = this.self.id;
     return await prisma.companyAdmin.update({
       where: { id: companyAdminId },
-      data: data,
+      ...updateArgs,
     });
   }
 

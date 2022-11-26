@@ -15,34 +15,29 @@ class User {
     });
 
     if (!user) {
-      new user(null);
       return null;
     }
 
     return new User(user);
   }
 
-  async find(id) {
-    return await prisma.user.findFirst({ where: { id: id } });
-  }
-
-  async findWith(findArgs) {
+  async find(findArgs) {
     return await prisma.user.findFirst(findArgs);
   }
 
-  async findAll() {
-    return await prisma.user.findMany();
+  async findAll(findAllArgs) {
+    return await prisma.user.findMany(findAllArgs);
   }
 
-  async create(data) {
-    return await prisma.user.create({ data });
+  async create(createArgs) {
+    return await prisma.user.create(createArgs);
   }
 
-  async update(data) {
+  async update(updateArgs) {
     const userId = this.self.id;
     return await prisma.user.update({
       where: { id: userId },
-      data: data,
+      ...updateArgs,
     });
   }
 
