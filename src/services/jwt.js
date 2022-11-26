@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const jwtErrors = require('../middlewares/errors/error/jwtErrors');
 
-const secret = 'asd123123';
+const secret = process.env.APP_SECRET;
 
 function signJwt(data = {}) {
   return jwt.sign(
@@ -10,7 +10,7 @@ function signJwt(data = {}) {
       data: data,
     },
     secret,
-    { expiresIn: '15s' }
+    { expiresIn: '1h' }
   );
 }
 

@@ -1,6 +1,6 @@
 const prisma = require('../../../services/prisma');
-const { signJwt } = require('../../../services/jwt');
 const QueryNotfound = require('../../../middlewares/errors/error/queryNotfound');
+const { signJwt } = require('../../../services/jwt');
 
 async function signin(req, res, next) {
   const body = req.body;
