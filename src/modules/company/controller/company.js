@@ -89,8 +89,16 @@ async function addClientAdminCompany(req, res) {
       throw new Error('user data must be unique');
     }
 
-    await companyService.createUserAdminAndAddToCompany(companyId, userData);
-    return res.json({ success: true, data: 'new admin are added to company' });
+    company = await companyService.createUserAdminAndAddToCompany(
+      companyId,
+      userData
+    );
+
+    return res.json({
+      success: true,
+      message: 'new admin are added to company',
+      data: company,
+    });
   }
 
   let companyAdmin = await companyAdminService.isAlreadyAdmin(

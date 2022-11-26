@@ -47,6 +47,9 @@ class CompanyService {
           },
         },
       },
+      include: {
+        CompanyAdmin: true,
+      },
     };
 
     const company = await Company.init(id);
