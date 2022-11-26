@@ -1,10 +1,20 @@
 const PermissinDenied = require('../errors/error/permissinDenied');
 
 const roleGuard = (requireRole) => (req, res, next) => {
+  let requiredRoles = [];
+
+  if (typeof requireRole === 'string') {
+    requiredRoles = [requireRole];
+  }
+
+  if (Array.isArray(requireRole)) {
+    requiredRoles = [...requireRole];
+  }
+
   const user = req.user.data;
   const userRole = user.role;
 
-  if (userRole !== requireRole) {
+  if (!requiredRoles.includes(userRole)) {
     throw new PermissinDenied();
   }
 

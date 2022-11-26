@@ -11,6 +11,7 @@ const {
   createCompany,
   updateCompany,
   deleteCompany,
+  addClientAdminCompany,
 } = require('./controller/company');
 
 const router = express.Router();
@@ -27,5 +28,6 @@ router.get('/:id', getCompany);
 router.post('/', ...validate.create, validators, createCompany);
 router.put('/:id', ...validate.update, validators, updateCompany);
 router.delete('/:id', deleteCompany);
+router.post('/:id/admin', addClientAdminCompany);
 
 module.exports = router;

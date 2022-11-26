@@ -23,11 +23,16 @@ class Company {
   }
 
   async find(id) {
-    return await prisma.company.findFirst({ where: { id: id } });
+    return await prisma.company.findFirst({
+      where: { id: id },
+      include: { Employee: true, CompanyAdmin: true },
+    });
   }
 
   async findAll() {
-    return await prisma.company.findMany();
+    return await prisma.company.findMany({
+      include: { Employee: true, CompanyAdmin: true },
+    });
   }
 
   async create(data) {
@@ -47,7 +52,49 @@ class Company {
     return await prisma.company.delete({ where: { id: companyId } });
   }
 
-  async addClientAdmin(user) {}
+  async addAdmin(userId) {
+    const companyId = this.self.id;
+    return await prisma.company.update({
+      where: { id: companyId },
+      data: {
+        CompanyAdmin: {
+          create: {
+            user: {
+              connect: {
+                id: userId,
+              },
+            },
+          },
+        },
+      },
+    });
+  }
+
+  async createNewAdmin(user) {
+    const companyId = this.self.id;
+    return await prisma.company.update({
+      where: { id: companyId },
+      data: {
+        CompanyAdmin: {
+          create: {
+            user: {
+              create: {
+                username: user.username,
+                password: user.password,
+                firstname: user.firstname,
+                lastname: user.lastname,
+                role: {
+                  connect: {
+                    role: user.role,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    });
+  }
 }
 
 module.exports = Company;

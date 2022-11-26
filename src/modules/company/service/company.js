@@ -1,4 +1,5 @@
-const { Company } = require('../../../models');
+const { Company, User, Role } = require('../../../models');
+const { ROLE } = require('../../../services/prisma');
 
 class CompanyService {
   async getOne(id) {
@@ -21,6 +22,27 @@ class CompanyService {
   async removeCompany(id) {
     const company = await Company.init(id);
     return await company.remove();
+  }
+
+  async addUserAdminToCompany(id, userId) {
+    const company = await Company.init(id);
+    return await company.addAdmin(userId);
+  }
+
+  async createUserAdminAndAddToCompany(id, userData) {
+    const adminRole = ROLE.CLIENT_ADMIN;
+
+    const company = await Company.init(id);
+
+    const user = {
+      username: userData.username,
+      password: userData.password,
+      firstname: userData.firstname,
+      lastname: userData.lastname,
+      role: adminRole,
+    };
+
+    return await company.createNewAdmin(user);
   }
 }
 
