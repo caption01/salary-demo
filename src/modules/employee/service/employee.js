@@ -20,7 +20,25 @@ class EmployeeService {
     return await new Employee().findAll(findAllArgs);
   }
 
-  async createNewEmployee(adminUserId, employeeData) {
+  async getOne(employeeId) {
+    const findArgs = {
+      where: {
+        id: employeeId,
+      },
+      include: {
+        user: {
+          select: {
+            firstname: true,
+            lastname: true,
+          },
+        },
+      },
+    };
+
+    return await new Employee().fineOne(findArgs);
+  }
+
+  async createNewEmployee(employeeData) {
     const createArgs = {
       data: {
         baseSalary: employeeData.baseSalary,
@@ -42,11 +60,60 @@ class EmployeeService {
             id: employeeData.companyId,
           },
         },
-        createdBy: {},
+        createdBy: {
+          connect: {
+            id: employeeData.createdById,
+          },
+        },
+      },
+      include: {
+        user: {
+          select: {
+            firstname: true,
+            lastname: true,
+          },
+        },
       },
     };
 
-    return await new Employee().create();
+    return await new Employee().create(createArgs);
+  }
+
+  async updateEmployee(id, employeeData) {
+    const updateArgs = {
+      data: {
+        baseSalary: employeeData.baseSalary,
+        user: {
+          update: {
+            username: employeeData.username,
+            password: employeeData.password,
+            firstname: employeeData.firstname,
+            lastname: employeeData.lastname,
+          },
+        },
+        company: {
+          connect: {
+            id: employeeData.companyId,
+          },
+        },
+      },
+      include: {
+        user: {
+          select: {
+            firstname: true,
+            lastname: true,
+          },
+        },
+      },
+    };
+
+    const employee = await Employee.init(id);
+    return await employee.update(updateArgs);
+  }
+
+  async removeEmployee(id) {
+    const employee = await Employee.init(id);
+    return await employee.remove();
   }
 }
 

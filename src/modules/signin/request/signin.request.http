@@ -3,8 +3,8 @@ POST http://localhost:3030/signin
 Content-Type: application/json
 
 {
-    "username": "salaryhero",
-    "password": "salaryhero123"
+    "username": "admin",
+    "password": "admin123"
 }
 
 # salaryhero

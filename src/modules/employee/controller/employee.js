@@ -2,53 +2,98 @@ const QueryNotFound = require('../../../middlewares/errors/error/queryNotfound')
 const EmployeeService = require('../service/employee');
 const CompanyAdminService = require('../../company/service/companyAdmin');
 
-async function getAllEmployee(req, res) {
+async function getEmployee(req, res) {
   const employeeService = await new EmployeeService();
 
   const companyId = parseInt(req.query.companyId);
+  const employeeId = parseInt(req.query.employeeId);
 
-  if (!companyId) {
-    throw new QueryNotFound('company id not found', 'companyId');
+  if (!employeeId) {
+    const employees = await employeeService.getAll(companyId);
+    res.json({ data: employees });
+    return;
   }
 
-  const employees = await employeeService.getAll(companyId);
-
-  res.json({ data: employees });
-}
-
-async function getEmployee(req, res) {
-  res.json({});
+  const employee = await employeeService.getOne(employeeId);
+  res.json({ data: employee });
 }
 
 async function createEmployee(req, res) {
   const employeeService = await new EmployeeService();
 
-  const { companyId, ...employee } = req.body;
   const currentUserId = req.user.data.id;
+  const employeeData = req.body;
 
-  const employeeData = {
-    username: employee.username,
-    password: employee.password,
-    firstname: employee.firstname,
-    lastname: employee.lastname,
-    baseSalary: employee.baseSalary,
-    companyId: companyId,
+  const employeeCreateData = {
+    username: employeeData.username,
+    password: employeeData.password,
+    firstname: employeeData.firstname,
+    lastname: employeeData.lastname,
+    baseSalary: employeeData.baseSalary,
+    companyId: employeeData.companyId,
+    createdById: currentUserId,
   };
 
-  const newEmployee = await employeeService.createNewEmployee(
-    currentUserId,
-    employeeData
-  );
+  const employee = await employeeService.createNewEmployee(employeeCreateData);
 
-  res.json({});
+  res.json({
+    success: true,
+    message: 'created new employee',
+    data: employee,
+  });
 }
 
 async function updateEmployee(req, res) {
-  res.json({});
+  const employeeService = await new EmployeeService();
+
+  const employeeId = parseInt(req.params.id);
+  const employeeData = req.body;
+
+  let employee = await employeeService.getOne(employeeId);
+
+  if (!employee) {
+    throw new QueryNotFound('Employee not found', 'id');
+  }
+
+  const employeeUpdateData = {
+    username: employeeData.username,
+    password: employeeData.password,
+    firstname: employeeData.firstname,
+    lastname: employeeData.lastname,
+    baseSalary: employeeData.baseSalary,
+    companyId: employeeData.companyId,
+  };
+
+  employee = await employeeService.updateEmployee(
+    employeeId,
+    employeeUpdateData
+  );
+
+  res.json({
+    success: true,
+    message: 'updated employee',
+    data: employee,
+  });
 }
 
 async function deleteEmployee(req, res) {
-  res.json({});
+  const employeeService = await new EmployeeService();
+
+  const employeeId = parseInt(req.params.id);
+
+  let employee = await employeeService.getOne(employeeId);
+
+  if (!employee) {
+    throw new QueryNotFound('Employee not found', 'id');
+  }
+
+  employee = await employeeService.removeEmployee(employeeId);
+
+  res.json({
+    success: true,
+    message: 'deleted employee',
+    data: employee,
+  });
 }
 
 async function importEmployees(req, res) {
@@ -56,7 +101,6 @@ async function importEmployees(req, res) {
 }
 
 module.exports = {
-  getAllEmployee,
   getEmployee,
   createEmployee,
   updateEmployee,

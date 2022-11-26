@@ -1,0 +1,40 @@
+### TO Get All Companies
+GET http://localhost:3030/employee?companyId=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyLCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJqb2huIiwibGFzdG5hbWUiOiJuYXRhY2hhIiwicm9sZSI6IkNMSUVOVF9BRE1JTiIsInJvbGVMZXZlbCI6MTB9LCJpYXQiOjE2Njk0NzUwMzcsImV4cCI6MTY2OTQ4NTgzN30.1SXSIumXyifUsv2W9Ct1NaQi1h36JaPregVcemLPXaI
+
+
+### To Create a New Employee For A Company
+POST http://localhost:3030/employee
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyLCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJqb2huIiwibGFzdG5hbWUiOiJuYXRhY2hhIiwicm9sZSI6IkNMSUVOVF9BRE1JTiIsInJvbGVMZXZlbCI6MTB9LCJpYXQiOjE2Njk0NzUwMzcsImV4cCI6MTY2OTQ4NTgzN30.1SXSIumXyifUsv2W9Ct1NaQi1h36JaPregVcemLPXaI
+
+{
+    "username": "employee4",
+    "password": "employee3_123",
+    "firstname": "employee3_fistname",
+    "lastname": "employee3_lastname",
+    "baseSalary": 30000
+}
+
+
+### To Update A Employee For A Company
+PUT http://localhost:3030/employee/6
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyLCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJqb2huIiwibGFzdG5hbWUiOiJuYXRhY2hhIiwicm9sZSI6IkNMSUVOVF9BRE1JTiIsInJvbGVMZXZlbCI6MTB9LCJpYXQiOjE2Njk0NzUwMzcsImV4cCI6MTY2OTQ4NTgzN30.1SXSIumXyifUsv2W9Ct1NaQi1h36JaPregVcemLPXaI
+
+{
+    "username": "employee3",
+    "password": "employee3_123",
+    "firstname": "employee3_fistname",
+    "lastname": "employee3_lastname",
+    "baseSalary": 3333,
+    "companyId": 1
+}
+
+
+### To Delete A Employee
+DELETE  http://localhost:3030/employee/6?companyId=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyLCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJqb2huIiwibGFzdG5hbWUiOiJuYXRhY2hhIiwicm9sZSI6IkNMSUVOVF9BRE1JTiIsInJvbGVMZXZlbCI6MTB9LCJpYXQiOjE2Njk0NzUwMzcsImV4cCI6MTY2OTQ4NTgzN30.1SXSIumXyifUsv2W9Ct1NaQi1h36JaPregVcemLPXaI
+
