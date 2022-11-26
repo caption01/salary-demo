@@ -15,15 +15,38 @@ async function getAllEmployee(req, res) {
 
   res.json({ data: employees });
 }
+
 async function getEmployee(req, res) {
   res.json({});
 }
+
 async function createEmployee(req, res) {
+  const employeeService = await new EmployeeService();
+
+  const { companyId, ...employee } = req.body;
+  const currentUserId = req.user.data.id;
+
+  const employeeData = {
+    username: employee.username,
+    password: employee.password,
+    firstname: employee.firstname,
+    lastname: employee.lastname,
+    baseSalary: employee.base_salary,
+    companyId: companyId,
+  };
+
+  const newEmployee = await employeeService.createNewEmployee(
+    currentUserId,
+    employeeData
+  );
+
   res.json({});
 }
+
 async function updateEmployee(req, res) {
   res.json({});
 }
+
 async function deleteEmployee(req, res) {
   res.json({});
 }

@@ -24,6 +24,10 @@ class Employee {
   async findAll(findAllArgs) {
     return await prisma.employee.findMany(findAllArgs);
   }
+
+  async create(createArgs) {
+    return await prisma.employee.create(createArgs);
+  }
 }
 
 module.exports = Employee;

@@ -32,25 +32,25 @@ model CompanyAdmin {
 
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
-
-  Employee Employee[]
 }
 
 model Employee {
   id          Int @id @default(autoincrement())
   base_salary Int
 
-  user             User          @relation(fields: [user_id], references: [id])
-  user_id          Int
-  company          Company       @relation(fields: [company_id], references: [id])
-  company_id       Int
-  company_admin    CompanyAdmin? @relation(fields: [company_admin_id], references: [id])
-  company_admin_id Int?
+  user          User    @relation(name: "EmployeeUser", fields: [user_id], references: [id])
+  user_id       Int
+  company       Company @relation(fields: [company_id], references: [id])
+  company_id    Int
+  created_by    User?   @relation(name: "CreatedUser", fields: [created_by_id], references: [id])
+  created_by_id Int?
 
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
 
   TransferRequest TransferRequest[]
+  User            User?             @relation(fields: [userId], references: [id])
+  userId          Int?
 }
 
 model TransferRequest {
@@ -84,8 +84,10 @@ model User {
   updatedAt DateTime? @updatedAt
 
   CompanyAdmin    CompanyAdmin[]
-  Employee        Employee[]
   TransferRequest TransferRequest[]
+  EmployeeUser    Employee[]        @relation("EmployeeUser")
+  CreatedUser     Employee[]        @relation("CreatedUser")
+  Employee        Employee[]
 }
 
 model Role {

@@ -17,6 +17,10 @@ const {
 
 const router = express.Router();
 
+const validate = {
+  create: [body('name').isString()],
+};
+
 router.use(roleGuard(ROLE.CLIENT_ADMIN));
 router.use(companyGuard);
 

@@ -6,7 +6,7 @@ const NotFoundError = require('./middlewares/errors/error/notFound');
 const authenticate = require('./middlewares/authenticate/authenticate');
 
 const signinRouter = require('./modules/signin/route');
-const superAdminRouter = require('./modules/superadmin/route');
+const meRouter = require('./modules/me/route');
 const companyRouter = require('./modules/company/route');
 const employeeRouter = require('./modules/employee/route');
 
@@ -27,7 +27,7 @@ function run(port) {
   app.use(authenticate);
 
   // private-routers
-  app.use('/superadmin', superAdminRouter);
+  app.use('/me', meRouter);
   app.use('/company', companyRouter);
   app.use('/employee', employeeRouter);
 

@@ -1,0 +1,4 @@
+### GET me
+GET http://localhost:3030/me
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyLCJpc19zdXBlcl9hZG1pbiI6ZmFsc2UsImZpcnN0bmFtZSI6ImpvaG4iLCJsYXN0bmFtZSI6Im5hdGFjaGEiLCJyb2xlIjoiQ0xJRU5UX0FETUlOIiwicm9sZV9sZXZlbCI6MTB9LCJpYXQiOjE2Njk0NzA2NTcsImV4cCI6MTY2OTQ4MTQ1N30.Xk_rmd26Qf629LiHcVebhNWw7Szn45XG1Goshn5CYZc

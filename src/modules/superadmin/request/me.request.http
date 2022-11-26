@@ -1,4 +1,0 @@
-### GET me
-GET http://localhost:3030/superadmin
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc19zdXBlcl9hZG1pbiI6dHJ1ZSwiZmlyc3RuYW1lIjoic2FsYXJ5IiwibGFzdG5hbWUiOiJoZXJvIiwicm9sZV9sZXZlbCI6MX0sImlhdCI6MTY2OTQyODU1OSwiZXhwIjoxNjY5NDI4NTc0fQ.D8n0QVUz03S3vr497Tj835pOoUcVjFqEM4W4A3WQR0k

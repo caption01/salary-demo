@@ -98,7 +98,7 @@ async function seedEmployee(company, clientAdmin) {
       password: '1111',
       base_salary: 20000,
       company: company,
-      company_admin: clientAdmin,
+      created_by: clientAdmin.user_id,
     },
     {
       firstname: 'Ernestine',
@@ -107,7 +107,7 @@ async function seedEmployee(company, clientAdmin) {
       password: '2222',
       base_salary: 20000,
       company: company,
-      company_admin: clientAdmin,
+      created_by: clientAdmin.user_id,
     },
     {
       firstname: 'Lucy',
@@ -116,7 +116,7 @@ async function seedEmployee(company, clientAdmin) {
       password: '3333',
       base_salary: 20000,
       company: company,
-      company_admin: clientAdmin,
+      created_by: clientAdmin.user_id,
     },
   ];
 
@@ -125,19 +125,14 @@ async function seedEmployee(company, clientAdmin) {
       data: {
         base_salary: employee.base_salary,
         user: {
-          connectOrCreate: {
-            where: {
-              username: employee.username,
-            },
-            create: {
-              username: employee.username,
-              password: employee.password,
-              firstname: employee.firstname,
-              lastname: employee.lastname,
-              role: {
-                connect: {
-                  id: employeeRole.id,
-                },
+          create: {
+            username: employee.username,
+            password: employee.password,
+            firstname: employee.firstname,
+            lastname: employee.lastname,
+            role: {
+              connect: {
+                id: employeeRole.id,
               },
             },
           },
@@ -147,9 +142,9 @@ async function seedEmployee(company, clientAdmin) {
             id: employee.company.id,
           },
         },
-        company_admin: {
+        created_by: {
           connect: {
-            id: employee.company_admin.id,
+            id: employee.created_by,
           },
         },
       },
