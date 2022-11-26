@@ -6,3 +6,11 @@ Content-Type: application/json
     "username": "salaryhero",
     "password": "salaryhero123"
 }
+
+# salaryhero
+# id: salaryhero
+# password: salaryhero123
+
+# mock clientAdmin
+# id: admin
+# password: admin123

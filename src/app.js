@@ -3,8 +3,7 @@ const bodyParser = require('body-parser');
 
 const errorHandler = require('./middlewares/errors/errorHandler');
 const NotFoundError = require('./middlewares/errors/error/notFound');
-
-const { authenticateToken } = require('./services/jwt');
+const authenticate = require('./middlewares/authenticate/authenticate');
 
 const signinRouter = require('./modules/signin/route');
 const superAdminRouter = require('./modules/superadmin/route');
@@ -24,7 +23,7 @@ function run(port) {
   // public-routers
   app.use('/signin', signinRouter);
 
-  app.use(authenticateToken);
+  app.use(authenticate);
 
   // private-routers
   app.use('/superadmin', superAdminRouter);

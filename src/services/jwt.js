@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const jwtErrors = require('../middlewares/errors/error/jwtErrors');
+const JwtErrors = require('../middlewares/errors/error/jwtErrors');
 
 const secret = process.env.APP_SECRET;
 
@@ -10,7 +10,7 @@ function signJwt(data = {}) {
       data: data,
     },
     secret,
-    { expiresIn: '1h' }
+    { expiresIn: '3h' }
   );
 }
 
@@ -23,29 +23,10 @@ function verifyJwt(token) {
   }
 }
 
-function authenticateToken(req, res, next) {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-
-  if (token == null) {
-    throw new jwtErrors('You dont have permission', 401);
-  }
-
-  jwt.verify(token, secret, (err, user) => {
-    if (err) {
-      throw new jwtErrors(err.message, 403);
-    }
-
-    req.user = user;
-
-    next();
-  });
-}
-
 module.exports = {
   jwt,
   secret,
   signJwt,
   verifyJwt,
-  authenticateToken,
+  JwtErrors,
 };
