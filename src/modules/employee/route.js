@@ -20,7 +20,7 @@ const validate = {
   create: [body('name').isString()],
 };
 
-router.use(roleGuard(ROLE.CLIENT_ADMIN));
+router.use(roleGuard([ROLE.CLIENT_ADMIN, ROLE.SUPER_ADMIN]));
 router.use(companyGuard);
 
 router.get('/', getEmployee);

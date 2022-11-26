@@ -1,40 +1,41 @@
 ### TO Get All Companies
 GET http://localhost:3030/employee?companyId=1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyLCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJqb2huIiwibGFzdG5hbWUiOiJuYXRhY2hhIiwicm9sZSI6IkNMSUVOVF9BRE1JTiIsInJvbGVMZXZlbCI6MTB9LCJpYXQiOjE2Njk0NzUwMzcsImV4cCI6MTY2OTQ4NTgzN30.1SXSIumXyifUsv2W9Ct1NaQi1h36JaPregVcemLPXaI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ3ODAzNiwiZXhwIjoxNjY5NDg4ODM2fQ.nhcrRdgkHQVztMsiAcJwQZmOlGcAif4lLNj3q6avGy0
 
 
 ### To Create a New Employee For A Company
 POST http://localhost:3030/employee
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyLCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJqb2huIiwibGFzdG5hbWUiOiJuYXRhY2hhIiwicm9sZSI6IkNMSUVOVF9BRE1JTiIsInJvbGVMZXZlbCI6MTB9LCJpYXQiOjE2Njk0NzUwMzcsImV4cCI6MTY2OTQ4NTgzN30.1SXSIumXyifUsv2W9Ct1NaQi1h36JaPregVcemLPXaI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ3ODAzNiwiZXhwIjoxNjY5NDg4ODM2fQ.nhcrRdgkHQVztMsiAcJwQZmOlGcAif4lLNj3q6avGy0
 
 {
-    "username": "employee4",
-    "password": "employee3_123",
-    "firstname": "employee3_fistname",
-    "lastname": "employee3_lastname",
-    "baseSalary": 30000
+    "username": "employee5",
+    "password": "employee5_123",
+    "firstname": "employee5_fistname",
+    "lastname": "employee5_lastname",
+    "baseSalary": 5555,
+    "companyId": 2
 }
 
 
 ### To Update A Employee For A Company
-PUT http://localhost:3030/employee/6
+PUT http://localhost:3030/employee/5
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyLCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJqb2huIiwibGFzdG5hbWUiOiJuYXRhY2hhIiwicm9sZSI6IkNMSUVOVF9BRE1JTiIsInJvbGVMZXZlbCI6MTB9LCJpYXQiOjE2Njk0NzUwMzcsImV4cCI6MTY2OTQ4NTgzN30.1SXSIumXyifUsv2W9Ct1NaQi1h36JaPregVcemLPXaI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ3ODAzNiwiZXhwIjoxNjY5NDg4ODM2fQ.nhcrRdgkHQVztMsiAcJwQZmOlGcAif4lLNj3q6avGy0
 
 {
-    "username": "employee3",
-    "password": "employee3_123",
-    "firstname": "employee3_fistname",
-    "lastname": "employee3_lastname",
-    "baseSalary": 3333,
-    "companyId": 1
+    "username": "employee2",
+    "password": "employee2_123",
+    "firstname": "employee2_fistname",
+    "lastname": "employee2_lastname",
+    "baseSalary": 12355555,
+    "companyId": 2
 }
 
 
 ### To Delete A Employee
-DELETE  http://localhost:3030/employee/6?companyId=1
+DELETE  http://localhost:3030/employee/7
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyLCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJqb2huIiwibGFzdG5hbWUiOiJuYXRhY2hhIiwicm9sZSI6IkNMSUVOVF9BRE1JTiIsInJvbGVMZXZlbCI6MTB9LCJpYXQiOjE2Njk0NzUwMzcsImV4cCI6MTY2OTQ4NTgzN30.1SXSIumXyifUsv2W9Ct1NaQi1h36JaPregVcemLPXaI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ3ODAzNiwiZXhwIjoxNjY5NDg4ODM2fQ.nhcrRdgkHQVztMsiAcJwQZmOlGcAif4lLNj3q6avGy0
 
