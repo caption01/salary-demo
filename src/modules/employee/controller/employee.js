@@ -31,7 +31,7 @@ async function createEmployee(req, res) {
     password: employee.password,
     firstname: employee.firstname,
     lastname: employee.lastname,
-    baseSalary: employee.base_salary,
+    baseSalary: employee.baseSalary,
     companyId: companyId,
   };
 

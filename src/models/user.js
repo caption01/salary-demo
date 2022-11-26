@@ -10,7 +10,7 @@ class User {
   static async init(id) {
     const user = await prisma.user.findFirst({
       where: {
-        id: parseInt(id),
+        id: id,
       },
     });
 

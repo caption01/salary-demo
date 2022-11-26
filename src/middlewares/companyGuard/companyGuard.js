@@ -8,7 +8,7 @@ const companyGuard = async (req, res, next) => {
   const companyId = parseInt(req.query.companyId);
 
   const companies = await companyAdminService.getCompaniesOfUser(currentUserId);
-  const companyIdOfUser = companies.map((c) => c.company_id);
+  const companyIdOfUser = companies.map((c) => c.companyId);
 
   if (!companyIdOfUser.includes(companyId)) {
     throw new PermissinDenied('You dont have permission for this company');

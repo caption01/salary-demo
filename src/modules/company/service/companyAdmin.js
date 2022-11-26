@@ -1,11 +1,11 @@
-const { CompanyAdmin, Employee } = require('../../../models');
+const { CompanyAdmin } = require('../../../models');
 
 class CompanyAdminService {
   async isAlreadyAdmin(userId, companyId) {
     const findAdminInCompanyArgs = {
       where: {
-        user_id: userId,
-        company_id: companyId,
+        userId: userId,
+        companyId: companyId,
       },
     };
 
@@ -15,7 +15,7 @@ class CompanyAdminService {
   async getCompaniesOfUser(userId) {
     const findAllArgs = {
       where: {
-        user_id: userId,
+        userId: userId,
       },
       include: {
         company: true,

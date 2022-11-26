@@ -5,7 +5,7 @@ class EmployeeService {
   async getAll(companyId) {
     const findAllArgs = {
       where: {
-        company_id: companyId,
+        companyId: companyId,
       },
       include: {
         user: {
@@ -23,7 +23,7 @@ class EmployeeService {
   async createNewEmployee(adminUserId, employeeData) {
     const createArgs = {
       data: {
-        base_salary: employeeData.baseSalary,
+        baseSalary: employeeData.baseSalary,
         user: {
           create: {
             username: employeeData.username,
@@ -42,7 +42,7 @@ class EmployeeService {
             id: employeeData.companyId,
           },
         },
-        company_admin: {},
+        createdBy: {},
       },
     };
 

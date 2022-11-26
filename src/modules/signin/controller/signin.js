@@ -23,16 +23,16 @@ async function signin(req, res, next) {
 
   const userData = {
     id: user.id,
-    is_super_admin: user.is_super_admin,
+    isSuperAdmin: user.isSuperAdmin,
     firstname: user.firstname,
     lastname: user.lastname,
     role: user.role.role,
-    role_level: user.role.level,
+    roleLevel: user.role.level,
   };
 
   const token = signJwt(userData);
 
-  res.json({ access_token: token });
+  res.json({ accessToken: token });
 }
 
 module.exports = {

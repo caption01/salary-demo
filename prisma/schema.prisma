@@ -25,32 +25,30 @@ model Company {
 model CompanyAdmin {
   id Int @id @default(autoincrement())
 
-  user       User    @relation(fields: [user_id], references: [id])
-  user_id    Int
-  company    Company @relation(fields: [company_id], references: [id])
-  company_id Int
+  user      User    @relation(fields: [userId], references: [id])
+  userId    Int
+  company   Company @relation(fields: [companyId], references: [id])
+  companyId Int
 
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
 }
 
 model Employee {
-  id          Int @id @default(autoincrement())
-  base_salary Int
+  id         Int @id @default(autoincrement())
+  baseSalary Int
 
-  user          User    @relation(name: "EmployeeUser", fields: [user_id], references: [id])
-  user_id       Int
-  company       Company @relation(fields: [company_id], references: [id])
-  company_id    Int
-  created_by    User?   @relation(name: "CreatedUser", fields: [created_by_id], references: [id])
-  created_by_id Int?
+  user        User    @relation(name: "EmployeeUser", fields: [userId], references: [id])
+  userId      Int
+  company     Company @relation(fields: [companyId], references: [id])
+  companyId   Int
+  createdBy   User    @relation(name: "CreatedUser", fields: [createdById], references: [id])
+  createdById Int
 
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
 
   TransferRequest TransferRequest[]
-  User            User?             @relation(fields: [userId], references: [id])
-  userId          Int?
 }
 
 model TransferRequest {
@@ -58,27 +56,27 @@ model TransferRequest {
   amount   Int
   approved Boolean @default(false)
 
-  company     Company  @relation(fields: [company_id], references: [id])
-  company_id  Int
-  approved_by User     @relation(fields: [user_id], references: [id])
-  user_id     Int
-  employee    Employee @relation(fields: [employee_id], references: [id])
-  employee_id Int
+  company    Company  @relation(fields: [companyId], references: [id])
+  companyId  Int
+  approvedBy User     @relation(fields: [userId], references: [id])
+  userId     Int
+  employee   Employee @relation(fields: [employeeId], references: [id])
+  employeeId Int
 
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
 }
 
 model User {
-  id             Int     @id @default(autoincrement())
-  is_super_admin Boolean @default(false)
-  username       String  @unique @db.VarChar(255)
-  password       String  @unique @db.VarChar(255)
-  firstname      String  @db.VarChar(255)
-  lastname       String  @db.VarChar(255)
+  id           Int     @id @default(autoincrement())
+  isSuperAdmin Boolean @default(false)
+  username     String  @unique @db.VarChar(255)
+  password     String  @unique @db.VarChar(255)
+  firstname    String  @db.VarChar(255)
+  lastname     String  @db.VarChar(255)
 
-  role    Role @relation(fields: [role_id], references: [id])
-  role_id Int
+  role   Role @relation(fields: [roleId], references: [id])
+  roleId Int
 
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
@@ -87,7 +85,6 @@ model User {
   TransferRequest TransferRequest[]
   EmployeeUser    Employee[]        @relation("EmployeeUser")
   CreatedUser     Employee[]        @relation("CreatedUser")
-  Employee        Employee[]
 }
 
 model Role {

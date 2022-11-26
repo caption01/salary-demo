@@ -4,8 +4,8 @@ const prisma = new PrismaClient();
 
 async function seedUserRoles() {
   const roles = [
-    { level: 1, title: 'super_admin', role: 'SUPER_ADMIN' },
-    { level: 10, title: 'client_admin', role: 'CLIENT_ADMIN' },
+    { level: 1, title: 'superAdmin', role: 'SUPER_ADMIN' },
+    { level: 10, title: 'clientAdmin', role: 'CLIENT_ADMIN' },
     { level: 100, title: 'employee', role: 'EMPLOYEE' },
   ];
 
@@ -20,7 +20,7 @@ async function seedSalaryHeroAdmin() {
   });
 
   const salaryHeroAdmin = {
-    is_super_admin: true,
+    isSuperAdmin: true,
     username: 'salaryhero',
     password: 'salaryhero123',
     firstname: 'salary',
@@ -43,7 +43,7 @@ async function seedClientAdmin() {
   });
 
   const clientAdmin = {
-    is_super_admin: false,
+    isSuperAdmin: false,
     username: 'admin',
     password: 'admin123',
     firstname: 'john',
@@ -96,34 +96,34 @@ async function seedEmployee(company, clientAdmin) {
       lastname: 'Kestrel',
       username: 'doretta',
       password: '1111',
-      base_salary: 20000,
+      baseSalary: 20000,
       company: company,
-      created_by: clientAdmin.user_id,
+      createdBy: clientAdmin.userId,
     },
     {
       firstname: 'Ernestine',
       lastname: 'Penelope',
       username: 'ernestine',
       password: '2222',
-      base_salary: 20000,
+      baseSalary: 20000,
       company: company,
-      created_by: clientAdmin.user_id,
+      createdBy: clientAdmin.userId,
     },
     {
       firstname: 'Lucy',
       lastname: 'Stefani',
       username: 'lucy',
       password: '3333',
-      base_salary: 20000,
+      baseSalary: 20000,
       company: company,
-      created_by: clientAdmin.user_id,
+      createdBy: clientAdmin.userId,
     },
   ];
 
   return employees.forEach(async (employee) => {
     await prisma.employee.create({
       data: {
-        base_salary: employee.base_salary,
+        baseSalary: employee.baseSalary,
         user: {
           create: {
             username: employee.username,
@@ -142,9 +142,9 @@ async function seedEmployee(company, clientAdmin) {
             id: employee.company.id,
           },
         },
-        created_by: {
+        createdBy: {
           connect: {
-            id: employee.created_by,
+            id: employee.createdBy,
           },
         },
       },
