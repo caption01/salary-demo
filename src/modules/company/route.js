@@ -1,8 +1,6 @@
 const express = require('express');
 const { body } = require('express-validator');
 
-const employeeRouter = require('../employee/route');
-
 const { ROLE } = require('../../services/prisma');
 const roleGuard = require('../../middlewares/roleGuard/roleGuard');
 const validators = require('../../middlewares/validators/validators');

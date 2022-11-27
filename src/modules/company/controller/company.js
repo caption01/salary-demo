@@ -69,8 +69,8 @@ async function deleteCompany(req, res) {
 
 async function addClientAdminCompany(req, res) {
   const companyId = parseInt(req.params.companyId);
-  const { id, ...userData } = req.body;
-  const userId = parseInt(id);
+  let { userId, ...userData } = req.body;
+  userId = parseInt(userId);
 
   const companyService = new CompanyService();
   const companyAdminService = new CompanyAdminService();

@@ -1,4 +1,5 @@
 username,password,firstname,lastname,baseSalary
-lucy,lucy123,lucy_f,lucy_l,999999
-bombay,bombay123,bombay_f,bombay_l,55555
-lucy,nok123,nok_f,nok_l,77777
+johna,johna123,johna_f,johna_l,60000
+johnb,johnb123,johnb_f,johnb_l,70000
+johnc,johnc123,johnc_f,johnc_l,80000
+johnd,johnd123,johnd_f,johnc_l,100000

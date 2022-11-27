@@ -25,9 +25,9 @@ async function seedSalaryHeroAdmin() {
   const salaryHeroAdmin = {
     isSuperAdmin: true,
     username: 'salaryhero',
-    password: 'salaryhero123',
-    firstname: 'salary',
-    lastname: 'hero',
+    password: 'salaryhero_123',
+    firstname: 'salaryhero_f',
+    lastname: 'salaryhero_l',
     role: {
       connect: {
         id: superAdminRole.id,
@@ -47,10 +47,10 @@ async function seedClientAdmin() {
 
   const clientAdmin = {
     isSuperAdmin: false,
-    username: 'admin',
-    password: 'admin123',
-    firstname: 'john',
-    lastname: 'natacha',
+    username: 'apple_admin1',
+    password: 'apple_admin1_123',
+    firstname: 'apple_admin1_f',
+    lastname: 'apple_admin1_l',
     role: {
       connect: {
         id: clientAdminRole.id,
@@ -95,28 +95,28 @@ async function seedEmployees(company, clientAdmin) {
 
   const employees = [
     {
-      firstname: 'Doretta',
-      lastname: 'Kestrel',
-      username: 'doretta',
-      password: 'doretta123',
+      firstname: 'apple_employee1_f',
+      lastname: 'apple_employee1_l',
+      username: 'apple_employee1',
+      password: 'apple_employee1_123',
       baseSalary: 20000,
       company: company,
       createdBy: clientAdmin.userId,
     },
     {
-      firstname: 'Ernestine',
-      lastname: 'Penelope',
-      username: 'ernestine',
-      password: 'ernestine123',
+      firstname: 'apple_employee2_f',
+      lastname: 'apple_employee2_l',
+      username: 'apple_employee2',
+      password: 'apple_employee2_123',
       baseSalary: 30000,
       company: company,
       createdBy: clientAdmin.userId,
     },
     {
-      firstname: 'Lucy',
-      lastname: 'Stefani',
-      username: 'lucy',
-      password: 'lucy123',
+      firstname: 'apple_employee3_f',
+      lastname: 'apple_employee3_l',
+      username: 'apple_employee3',
+      password: 'apple_employee3_123',
       baseSalary: 40000,
       company: company,
       createdBy: clientAdmin.userId,

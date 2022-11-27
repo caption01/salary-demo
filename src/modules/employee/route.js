@@ -5,7 +5,6 @@ const { body, query } = require('express-validator');
 const { ROLE } = require('../../services/prisma');
 const roleGuard = require('../../middlewares/roleGuard/roleGuard');
 const companyGuard = require('../../middlewares/companyGuard/companyGuard');
-const validators = require('../../middlewares/validators/validators');
 
 const upload = multer({ dest: 'tmp/csv/' });
 

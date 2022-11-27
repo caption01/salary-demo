@@ -18,7 +18,7 @@ async function createTransfer(req, res) {
   const employee = await employeeService.getOne(employeeId);
 
   if (!employee) {
-    throw new QueryNotFound('Employee not found.', employeeId);
+    throw new QueryNotFound('Employee not found.', 'employeeId');
   }
 
   const canRequest = await transferService.canRequest(employee, {

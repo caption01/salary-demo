@@ -3,18 +3,18 @@ POST http://localhost:3000/signin
 Content-Type: application/json
 
 {
-    "username": "doretta",
-    "password": "doretta123"
+    "username": "apple_employee1",
+    "password": "apple_employee1_123"
 }
 
 # salaryhero
 # username: salaryhero
-# password: salaryhero123
+# password: salaryhero_123
 
-# mock clientAdmin
-# username: admin
-# password: admin123
+# mock clientAdmin of APPLE company
+# username: apple_admin1
+# password: apple_admin1_123
 
 # mock employee of APPLE company
-# username: doretta
-# password: doretta123
+# username: apple_employee1
+# password: apple_employee1_123

@@ -74,6 +74,27 @@ class CompanyService {
     const company = await Company.init(id);
     return await company.update(addAdminArgs);
   }
+
+  async getAllUsersOf(id) {
+    const findArgs = {
+      include: {
+        Employee: {
+          select: {
+            userId: true,
+          },
+        },
+        CompanyAdmin: {
+          select: {
+            userId: true,
+          },
+        },
+      },
+    };
+
+    const company = await Company.init(id);
+
+    return await company.find(id, findArgs);
+  }
 }
 
 module.exports = CompanyService;
