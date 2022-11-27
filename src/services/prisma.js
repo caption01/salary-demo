@@ -1,4 +1,4 @@
-const { PrismaClient } = require('@prisma/client');
+const { PrismaClient, Prisma } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
@@ -8,4 +8,4 @@ const ROLE = {
   EMPLOYEE: 'EMPLOYEE',
 };
 
-module.exports = { prisma, ROLE };
+module.exports = { prisma, ROLE, PrismaClient, Prisma };

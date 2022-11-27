@@ -6,18 +6,28 @@ class UserService {
   }
 
   async isUserUnique(userData) {
-    const args = {
+    const findArgs = {
       where: {
         username: userData.username,
-        password: userData.password,
-        firstname: userData.firstname,
-        lastname: userData.lastname,
       },
     };
 
-    const foundUser = Boolean(await new User().find(args));
+    const foundUser = Boolean(await new User().find(findArgs));
 
     return !foundUser;
+  }
+
+  async isCanUpsert(userData) {
+    const findAllArgs = {
+      where: {
+        username: userData.username,
+      },
+    };
+
+    const users = await new User().findAll(findAllArgs);
+    const canNotUpsert = !users || users.length > 1;
+
+    return !canNotUpsert;
   }
 }
 

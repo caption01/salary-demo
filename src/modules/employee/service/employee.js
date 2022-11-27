@@ -1,5 +1,5 @@
 const { ROLE } = require('../../../services/prisma');
-const { Employee } = require('../../../models');
+const { Employee, User } = require('../../../models');
 
 class EmployeeService {
   async getAll(companyId) {
@@ -115,6 +115,90 @@ class EmployeeService {
   async removeEmployee(id) {
     const employee = await Employee.init(id);
     return await employee.remove();
+  }
+
+  async getEmployeeId(employee) {
+    const notfoundId = 9999999;
+
+    const user = await new User().find({
+      where: {
+        username: employee.username,
+      },
+      select: {
+        EmployeeUser: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+
+    if (!user) {
+      return notfoundId;
+    }
+
+    return user.EmployeeUser[0].id;
+  }
+
+  async importEmployees(employees = [], companyId, createdById) {
+    return await employees.map(async (employee) => {
+      const employeeId = await this.getEmployeeId(employee);
+
+      const upsertArgs = {
+        where: {
+          id: employeeId,
+        },
+        create: {
+          baseSalary: employee.baseSalary,
+          user: {
+            create: {
+              username: employee.username,
+              password: employee.password,
+              firstname: employee.firstname,
+              lastname: employee.lastname,
+              role: {
+                connect: {
+                  role: ROLE.EMPLOYEE,
+                },
+              },
+            },
+          },
+          company: {
+            connect: {
+              id: companyId,
+            },
+          },
+          createdBy: {
+            connect: {
+              id: createdById,
+            },
+          },
+        },
+        update: {
+          baseSalary: employee.baseSalary,
+          user: {
+            update: {
+              username: employee.username,
+              password: employee.password,
+              firstname: employee.firstname,
+              lastname: employee.lastname,
+            },
+          },
+          company: {
+            connect: {
+              id: companyId,
+            },
+          },
+          createdBy: {
+            connect: {
+              id: createdById,
+            },
+          },
+        },
+      };
+
+      return await new Employee().upsert(upsertArgs);
+    });
   }
 }
 

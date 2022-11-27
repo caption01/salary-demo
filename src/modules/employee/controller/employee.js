@@ -1,6 +1,11 @@
 const QueryNotFound = require('../../../middlewares/errors/error/queryNotfound');
 const EmployeeService = require('../service/employee');
-const CompanyAdminService = require('../../company/service/companyAdmin');
+
+const {
+  convertCsvFileToEmployees,
+  isEmployeeDataUnique,
+  isEmployeeDatabaseUnique,
+} = require('../utils/employee');
 
 async function getEmployee(req, res) {
   const employeeService = await new EmployeeService();
@@ -26,7 +31,7 @@ async function getEmployee(req, res) {
 async function createEmployee(req, res) {
   const employeeService = await new EmployeeService();
 
-  const currentUserId = req.user.data.id;
+  const currentUserId = parseInt(req.user.data.id);
   const companyId = parseInt(req.params.companyId);
   const employeeData = req.body;
 
@@ -104,7 +109,30 @@ async function deleteEmployee(req, res) {
 }
 
 async function importEmployees(req, res) {
-  res.json({});
+  const employeeService = new EmployeeService();
+
+  const csvFile = req.file;
+  const employees = await convertCsvFileToEmployees(csvFile);
+
+  if (!(await isEmployeeDataUnique(employees))) {
+    throw new Error('employee data "username" must unique, please try agian');
+  }
+
+  if (!(await isEmployeeDatabaseUnique(employees))) {
+    throw new Error(
+      'employee "username" existing in database, please try agian'
+    );
+  }
+
+  const currentUserId = parseInt(req.user.data.id);
+  const companyId = parseInt(req.params.companyId);
+
+  await employeeService.importEmployees(employees, companyId, currentUserId);
+
+  res.json({
+    success: true,
+    message: 'employees are imported ',
+  });
 }
 
 module.exports = {

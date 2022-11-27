@@ -1,10 +1,13 @@
 const express = require('express');
+const multer = require('multer');
 const { body, query } = require('express-validator');
 
 const { ROLE } = require('../../services/prisma');
 const roleGuard = require('../../middlewares/roleGuard/roleGuard');
 const companyGuard = require('../../middlewares/companyGuard/companyGuard');
 const validators = require('../../middlewares/validators/validators');
+
+const upload = multer({ dest: 'tmp/csv/' });
 
 const {
   getEmployee,
@@ -29,6 +32,6 @@ router.post('/', createEmployee);
 router.put('/:employeeId', updateEmployee);
 router.delete('/:employeeId', deleteEmployee);
 
-router.post('/import', importEmployees);
+router.post('/import', upload.single('file'), importEmployees);
 
 module.exports = router;

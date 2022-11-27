@@ -33,6 +33,10 @@ class Employee {
     return await prisma.employee.create(createArgs);
   }
 
+  async upsert(upsertArgs) {
+    return await prisma.employee.upsert(upsertArgs);
+  }
+
   async update(updateArgs) {
     return await prisma.employee.update({
       where: {
