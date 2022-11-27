@@ -1,12 +1,15 @@
 const { PrismaClient } = require('@prisma/client');
 
+const { ROLE } = require('../src/services/prisma');
+const { convertDateStringToIso } = require('../src/utils/moment');
+
 const prisma = new PrismaClient();
 
 async function seedUserRoles() {
   const roles = [
-    { level: 1, title: 'superAdmin', role: 'SUPER_ADMIN' },
-    { level: 10, title: 'clientAdmin', role: 'CLIENT_ADMIN' },
-    { level: 100, title: 'employee', role: 'EMPLOYEE' },
+    { level: 1, title: 'superAdmin', role: ROLE.SUPER_ADMIN },
+    { level: 10, title: 'clientAdmin', role: ROLE.CLIENT_ADMIN },
+    { level: 100, title: 'employee', role: ROLE.EMPLOYEE },
   ];
 
   return await prisma.role.createMany({ data: roles });
@@ -15,7 +18,7 @@ async function seedUserRoles() {
 async function seedSalaryHeroAdmin() {
   const superAdminRole = await prisma.role.findFirst({
     where: {
-      role: 'SUPER_ADMIN',
+      role: ROLE.SUPER_ADMIN,
     },
   });
 
@@ -38,7 +41,7 @@ async function seedSalaryHeroAdmin() {
 async function seedClientAdmin() {
   const clientAdminRole = await prisma.role.findFirst({
     where: {
-      role: 'CLIENT_ADMIN',
+      role: ROLE.CLIENT_ADMIN,
     },
   });
 
@@ -83,10 +86,10 @@ async function seedCompanyAdmin(company, clientAdmin) {
   });
 }
 
-async function seedEmployee(company, clientAdmin) {
+async function seedEmployees(company, clientAdmin) {
   const employeeRole = await prisma.role.findFirst({
     where: {
-      role: 'EMPLOYEE',
+      role: ROLE.EMPLOYEE,
     },
   });
 
@@ -95,7 +98,7 @@ async function seedEmployee(company, clientAdmin) {
       firstname: 'Doretta',
       lastname: 'Kestrel',
       username: 'doretta',
-      password: '1111',
+      password: 'doretta123',
       baseSalary: 20000,
       company: company,
       createdBy: clientAdmin.userId,
@@ -104,8 +107,8 @@ async function seedEmployee(company, clientAdmin) {
       firstname: 'Ernestine',
       lastname: 'Penelope',
       username: 'ernestine',
-      password: '2222',
-      baseSalary: 20000,
+      password: 'ernestine123',
+      baseSalary: 30000,
       company: company,
       createdBy: clientAdmin.userId,
     },
@@ -113,43 +116,92 @@ async function seedEmployee(company, clientAdmin) {
       firstname: 'Lucy',
       lastname: 'Stefani',
       username: 'lucy',
-      password: '3333',
-      baseSalary: 20000,
+      password: 'lucy123',
+      baseSalary: 40000,
       company: company,
       createdBy: clientAdmin.userId,
     },
   ];
 
-  return employees.forEach(async (employee) => {
-    await prisma.employee.create({
-      data: {
-        baseSalary: employee.baseSalary,
-        user: {
-          create: {
-            username: employee.username,
-            password: employee.password,
-            firstname: employee.firstname,
-            lastname: employee.lastname,
-            role: {
-              connect: {
-                id: employeeRole.id,
+  return new Promise(async (resolve, reject) => {
+    let newEmployee = [];
+
+    for (let employee of employees) {
+      const newEm = await prisma.employee.create({
+        data: {
+          baseSalary: employee.baseSalary,
+          user: {
+            create: {
+              username: employee.username,
+              password: employee.password,
+              firstname: employee.firstname,
+              lastname: employee.lastname,
+              role: {
+                connect: {
+                  id: employeeRole.id,
+                },
               },
             },
           },
-        },
-        company: {
-          connect: {
-            id: employee.company.id,
+          company: {
+            connect: {
+              id: employee.company.id,
+            },
+          },
+          createdBy: {
+            connect: {
+              id: employee.createdBy,
+            },
           },
         },
-        createdBy: {
-          connect: {
-            id: employee.createdBy,
-          },
-        },
+      });
+
+      newEmployee.push(newEm);
+    }
+
+    resolve(newEmployee);
+  });
+}
+
+async function seedTransferRequest(employee) {
+  const mockTransfer = [
+    {
+      employee: employee,
+      date: '2022-10-05',
+      amount: 1500,
+    },
+    {
+      employee: employee,
+      date: '2022-10-06',
+      amount: 1500,
+    },
+    {
+      employee: employee,
+      date: '2022-11-05',
+      amount: 2500,
+    },
+    {
+      employee: employee,
+      date: '2022-11-06',
+      amount: 2500,
+    },
+    {
+      employee: employee,
+      date: '2022-12-05',
+      amount: 8000,
+    },
+  ];
+
+  for (let transfer of mockTransfer) {
+    await prisma.transferRequest.create({
+      data: {
+        amount: transfer.amount,
+        companyId: transfer.employee.companyId,
+        employeeId: transfer.employee.id,
+        date: convertDateStringToIso(transfer.date),
       },
     });
-  });
+  }
 }
 
 async function main() {
@@ -160,7 +212,11 @@ async function main() {
   const company = await seedCompany();
 
   const companyAdmin = await seedCompanyAdmin(company, clientAdmin);
-  await seedEmployee(company, companyAdmin);
+  const employees = await seedEmployees(company, companyAdmin);
+
+  for (let employee of employees) {
+    await seedTransferRequest(employee);
+  }
 }
 main()
   .then(async () => {

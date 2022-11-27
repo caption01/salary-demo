@@ -9,6 +9,7 @@ const signinRouter = require('./modules/signin/route');
 const meRouter = require('./modules/me/route');
 const companyRouter = require('./modules/company/route');
 const employeeRouter = require('./modules/employee/route');
+const transferRouter = require('./modules/transfer/router');
 
 function run(port) {
   const app = express();
@@ -28,6 +29,7 @@ function run(port) {
 
   // private-routers
   app.use('/me', meRouter);
+  app.use('/company/:companyId/employee/:employeeId/transfer', transferRouter);
   app.use('/company/:companyId/employee', employeeRouter);
   app.use('/company', companyRouter);
 

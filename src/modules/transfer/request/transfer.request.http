@@ -1,0 +1,11 @@
+### Signin
+POST http://localhost:3000/company/1/employee/1/transfer
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozLCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJEb3JldHRhIiwibGFzdG5hbWUiOiJLZXN0cmVsIiwicm9sZSI6IkVNUExPWUVFIiwicm9sZUxldmVsIjoxMDB9LCJpYXQiOjE2Njk1NjAxNDYsImV4cCI6MTY2OTU3MDk0Nn0.dtayFzqJp_SsM8PPg9EaSPtSj_uVGyexvlHraDbnRO4
+
+
+{
+    "amount": 500,
+    "date": "2022-12-10"
+}
+
