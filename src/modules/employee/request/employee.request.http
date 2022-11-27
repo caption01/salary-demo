@@ -1,41 +1,45 @@
-### TO Get All Companies
-GET http://localhost:3030/employee?companyId=1
+### TO Get All Employees in Company
+GET http://localhost:3030/company/1/employee
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ3ODAzNiwiZXhwIjoxNjY5NDg4ODM2fQ.nhcrRdgkHQVztMsiAcJwQZmOlGcAif4lLNj3q6avGy0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTUxNzcyNywiZXhwIjoxNjY5NTI4NTI3fQ.G-Pqsjw0VVjizBthH0boafocWtgHLECEnaNWPwH_7KU
+
+
+### TO Get A Employee in Company
+GET http://localhost:3030/company/2/employee?employeeId=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTUxNzcyNywiZXhwIjoxNjY5NTI4NTI3fQ.G-Pqsjw0VVjizBthH0boafocWtgHLECEnaNWPwH_7KU
 
 
 ### To Create a New Employee For A Company
-POST http://localhost:3030/employee
+POST http://localhost:3030/company/2/employee
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ3ODAzNiwiZXhwIjoxNjY5NDg4ODM2fQ.nhcrRdgkHQVztMsiAcJwQZmOlGcAif4lLNj3q6avGy0
-
-{
-    "username": "employee5",
-    "password": "employee5_123",
-    "firstname": "employee5_fistname",
-    "lastname": "employee5_lastname",
-    "baseSalary": 5555,
-    "companyId": 2
-}
-
-
-### To Update A Employee For A Company
-PUT http://localhost:3030/employee/5
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ3ODAzNiwiZXhwIjoxNjY5NDg4ODM2fQ.nhcrRdgkHQVztMsiAcJwQZmOlGcAif4lLNj3q6avGy0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTUxNzcyNywiZXhwIjoxNjY5NTI4NTI3fQ.G-Pqsjw0VVjizBthH0boafocWtgHLECEnaNWPwH_7KU
 
 {
     "username": "employee2",
     "password": "employee2_123",
-    "firstname": "employee2_fistname",
-    "lastname": "employee2_lastname",
-    "baseSalary": 12355555,
-    "companyId": 2
+    "firstname": "employee2_f",
+    "lastname": "employee2_l",
+    "baseSalary": 12500
+}
+
+
+### To Update A Employee For A Company
+PUT http://localhost:3030/company/1/employee/4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTUxNzcyNywiZXhwIjoxNjY5NTI4NTI3fQ.G-Pqsjw0VVjizBthH0boafocWtgHLECEnaNWPwH_7KU
+
+{
+    "username": "employee1",
+    "password": "employee1_123",
+    "firstname": "employee1_fistname",
+    "lastname": "employee1_lastname",
+    "baseSalary": 12355555
 }
 
 
 ### To Delete A Employee
-DELETE  http://localhost:3030/employee/7
+DELETE  http://localhost:3030/company/1/employee/4
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ3ODAzNiwiZXhwIjoxNjY5NDg4ODM2fQ.nhcrRdgkHQVztMsiAcJwQZmOlGcAif4lLNj3q6avGy0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTUxNzcyNywiZXhwIjoxNjY5NTI4NTI3fQ.G-Pqsjw0VVjizBthH0boafocWtgHLECEnaNWPwH_7KU
 

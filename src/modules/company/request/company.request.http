@@ -1,20 +1,20 @@
 ### TO Get All Companies
 GET http://localhost:3030/company
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ3MzcwMSwiZXhwIjoxNjY5NDg0NTAxfQ.Jla7M0bBACndhDwgWOhluWdouiUUlnqKSGaVipjJeoE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ4MDIwMSwiZXhwIjoxNjY5NDkxMDAxfQ.tGiTybASRj-z5dNqDFB-8h2IEFtgvhMb-ucH-ioBpMM
 
 
 ### To Get A Company
-GET http://localhost:3030/company/2
+GET http://localhost:3030/company/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ3MzcwMSwiZXhwIjoxNjY5NDg0NTAxfQ.Jla7M0bBACndhDwgWOhluWdouiUUlnqKSGaVipjJeoE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ4MDIwMSwiZXhwIjoxNjY5NDkxMDAxfQ.tGiTybASRj-z5dNqDFB-8h2IEFtgvhMb-ucH-ioBpMM
 
 
 
 ### To Create A New Company
 POST  http://localhost:3030/company
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ3MzcwMSwiZXhwIjoxNjY5NDg0NTAxfQ.Jla7M0bBACndhDwgWOhluWdouiUUlnqKSGaVipjJeoE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ4MDIwMSwiZXhwIjoxNjY5NDkxMDAxfQ.tGiTybASRj-z5dNqDFB-8h2IEFtgvhMb-ucH-ioBpMM
 
 {
     "name": "ORANGE"
@@ -24,7 +24,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxL
 ### To Update A Company
 PUT  http://localhost:3030/company/2
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ3MzcwMSwiZXhwIjoxNjY5NDg0NTAxfQ.Jla7M0bBACndhDwgWOhluWdouiUUlnqKSGaVipjJeoE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ4MDIwMSwiZXhwIjoxNjY5NDkxMDAxfQ.tGiTybASRj-z5dNqDFB-8h2IEFtgvhMb-ucH-ioBpMM
 
 {
     "name": "ORANGE_2"
@@ -32,29 +32,29 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxL
 
 
 ### To Delete A Company
-DELETE   http://localhost:3030/company/4
+DELETE   http://localhost:3030/company/2
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ3MzcwMSwiZXhwIjoxNjY5NDg0NTAxfQ.Jla7M0bBACndhDwgWOhluWdouiUUlnqKSGaVipjJeoE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ4MDIwMSwiZXhwIjoxNjY5NDkxMDAxfQ.tGiTybASRj-z5dNqDFB-8h2IEFtgvhMb-ucH-ioBpMM
 
 
 ### To Create A New ClientAdmin And Add to Company
-POST    http://localhost:3030/company/1/admin
+POST    http://localhost:3030/company/2/admin
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ3MzcwMSwiZXhwIjoxNjY5NDg0NTAxfQ.Jla7M0bBACndhDwgWOhluWdouiUUlnqKSGaVipjJeoE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ4MDIwMSwiZXhwIjoxNjY5NDkxMDAxfQ.tGiTybASRj-z5dNqDFB-8h2IEFtgvhMb-ucH-ioBpMM
 
 {
-    "username": "clientadmin5",
-    "password": "clientadmin5_123",
-    "firstname": "jonb",
-    "lastname": "jonbnb"
+    "username": "clientadmin1",
+    "password": "clientadmin1_123",
+    "firstname": "jona",
+    "lastname": "jonana"
 }
 
 
 ### To Add Existing ClientAdmin To Company
-POST    http://localhost:3030/company/2/admin
+POST    http://localhost:3030/company/1/admin
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ3MzcwMSwiZXhwIjoxNjY5NDg0NTAxfQ.Jla7M0bBACndhDwgWOhluWdouiUUlnqKSGaVipjJeoE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTQ4MDIwMSwiZXhwIjoxNjY5NDkxMDAxfQ.tGiTybASRj-z5dNqDFB-8h2IEFtgvhMb-ucH-ioBpMM
 
 {
-    "id": "11"
+    "id": "6"
 }

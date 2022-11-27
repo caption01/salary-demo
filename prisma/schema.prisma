@@ -17,17 +17,16 @@ model Company {
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
 
-  CompanyAdmin    CompanyAdmin[]
-  Employee        Employee[]
-  TransferRequest TransferRequest[]
+  Employee     Employee[]
+  CompanyAdmin CompanyAdmin[]
 }
 
 model CompanyAdmin {
   id Int @id @default(autoincrement())
 
-  user      User    @relation(fields: [userId], references: [id])
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    Int
-  company   Company @relation(fields: [companyId], references: [id])
+  company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
   companyId Int
 
   createdAt DateTime  @default(now())
@@ -38,17 +37,15 @@ model Employee {
   id         Int @id @default(autoincrement())
   baseSalary Int
 
-  user        User    @relation(name: "EmployeeUser", fields: [userId], references: [id])
-  userId      Int
-  company     Company @relation(fields: [companyId], references: [id])
-  companyId   Int
-  createdBy   User    @relation(name: "CreatedUser", fields: [createdById], references: [id])
+  user        User?    @relation(name: "EmployeeUser", fields: [userId], references: [id], onDelete: SetNull)
+  userId      Int?
+  company     Company? @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  companyId   Int?
+  createdBy   User     @relation(name: "CreatedUser", fields: [createdById], references: [id])
   createdById Int
 
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
-
-  TransferRequest TransferRequest[]
 }
 
 model TransferRequest {
@@ -56,12 +53,9 @@ model TransferRequest {
   amount   Int
   approved Boolean @default(false)
 
-  company    Company  @relation(fields: [companyId], references: [id])
-  companyId  Int
-  approvedBy User     @relation(fields: [userId], references: [id])
-  userId     Int
-  employee   Employee @relation(fields: [employeeId], references: [id])
-  employeeId Int
+  companyId    Int
+  employeeId   Int
+  approvedById Int?
 
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
@@ -71,7 +65,7 @@ model User {
   id           Int     @id @default(autoincrement())
   isSuperAdmin Boolean @default(false)
   username     String  @unique @db.VarChar(255)
-  password     String  @unique @db.VarChar(255)
+  password     String  @db.VarChar(255)
   firstname    String  @db.VarChar(255)
   lastname     String  @db.VarChar(255)
 
@@ -81,10 +75,9 @@ model User {
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
 
-  CompanyAdmin    CompanyAdmin[]
-  TransferRequest TransferRequest[]
-  EmployeeUser    Employee[]        @relation("EmployeeUser")
-  CreatedUser     Employee[]        @relation("CreatedUser")
+  CompanyAdmin CompanyAdmin[]
+  EmployeeUser Employee[]     @relation("EmployeeUser")
+  CreatedUser  Employee[]     @relation("CreatedUser")
 }
 
 model Role {

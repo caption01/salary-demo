@@ -14,7 +14,7 @@ const {
   importEmployees,
 } = require('./controller/employee');
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 const validate = {
   create: [body('name').isString()],
@@ -26,8 +26,8 @@ router.use(companyGuard);
 router.get('/', getEmployee);
 router.post('/', createEmployee);
 
-router.put('/:id', updateEmployee);
-router.delete('/:id', deleteEmployee);
+router.put('/:employeeId', updateEmployee);
+router.delete('/:employeeId', deleteEmployee);
 
 router.post('/import', importEmployees);
 

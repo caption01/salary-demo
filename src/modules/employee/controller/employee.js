@@ -5,7 +5,7 @@ const CompanyAdminService = require('../../company/service/companyAdmin');
 async function getEmployee(req, res) {
   const employeeService = await new EmployeeService();
 
-  const companyId = parseInt(req.query.companyId);
+  const companyId = parseInt(req.params.companyId);
   const employeeId = parseInt(req.query.employeeId);
 
   if (!employeeId) {
@@ -14,7 +14,12 @@ async function getEmployee(req, res) {
     return;
   }
 
-  const employee = await employeeService.getOne(employeeId);
+  const employee = await employeeService.getOne(employeeId, companyId);
+
+  if (!employee) {
+    throw new QueryNotFound('Employee not found in this company', 'employeeId');
+  }
+
   res.json({ data: employee });
 }
 
@@ -22,6 +27,7 @@ async function createEmployee(req, res) {
   const employeeService = await new EmployeeService();
 
   const currentUserId = req.user.data.id;
+  const companyId = parseInt(req.params.companyId);
   const employeeData = req.body;
 
   const employeeCreateData = {
@@ -30,7 +36,7 @@ async function createEmployee(req, res) {
     firstname: employeeData.firstname,
     lastname: employeeData.lastname,
     baseSalary: employeeData.baseSalary,
-    companyId: employeeData.companyId,
+    companyId: companyId,
     createdById: currentUserId,
   };
 
@@ -46,13 +52,14 @@ async function createEmployee(req, res) {
 async function updateEmployee(req, res) {
   const employeeService = await new EmployeeService();
 
-  const employeeId = parseInt(req.params.id);
+  const companyId = parseInt(req.params.companyId);
+  const employeeId = parseInt(req.params.employeeId);
   const employeeData = req.body;
 
   let employee = await employeeService.getOne(employeeId);
 
   if (!employee) {
-    throw new QueryNotFound('Employee not found', 'id');
+    throw new QueryNotFound('Employee not found', 'employeeId');
   }
 
   const employeeUpdateData = {
@@ -61,7 +68,7 @@ async function updateEmployee(req, res) {
     firstname: employeeData.firstname,
     lastname: employeeData.lastname,
     baseSalary: employeeData.baseSalary,
-    companyId: employeeData.companyId,
+    companyId: companyId,
   };
 
   employee = await employeeService.updateEmployee(
@@ -79,12 +86,12 @@ async function updateEmployee(req, res) {
 async function deleteEmployee(req, res) {
   const employeeService = await new EmployeeService();
 
-  const employeeId = parseInt(req.params.id);
+  const employeeId = parseInt(req.params.employeeId);
 
   let employee = await employeeService.getOne(employeeId);
 
   if (!employee) {
-    throw new QueryNotFound('Employee not found', 'id');
+    throw new QueryNotFound('Employee not found', 'employeeId');
   }
 
   employee = await employeeService.removeEmployee(employeeId);

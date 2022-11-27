@@ -12,13 +12,13 @@ async function getAllCompany(req, res) {
 }
 
 async function getCompany(req, res) {
-  const id = parseInt(req.params.id);
-  const company = await new CompanyService().getOne(id, {
+  const companyId = parseInt(req.params.companyId);
+  const company = await new CompanyService().getOne(companyId, {
     include: { Employee: true, CompanyAdmin: true },
   });
 
   if (!company) {
-    throw new QueryNotFound('company not found', 'id');
+    throw new QueryNotFound('company not found', 'companyId');
   }
 
   return res.json({ data: company });
@@ -34,41 +34,41 @@ async function createCompany(req, res) {
 }
 
 async function updateCompany(req, res) {
-  const id = parseInt(req.params.id);
+  const companyId = parseInt(req.params.companyId);
   const body = req.body;
   const updateArgs = { data: { name: body.name } };
 
   const service = new CompanyService();
 
-  let company = await service.getOne(id);
+  let company = await service.getOne(companyId);
 
   if (!company) {
-    throw new QueryNotFound('company not found', 'id');
+    throw new QueryNotFound('company not found', 'companyId');
   }
 
-  company = await service.updateCompany(id, updateArgs);
+  company = await service.updateCompany(companyId, updateArgs);
 
   res.json({ success: true, data: company });
 }
 
 async function deleteCompany(req, res) {
-  const id = parseInt(req.params.id);
+  const companyId = parseInt(req.params.companyId);
 
   let service = await new CompanyService();
 
-  let company = await service.getOne(id);
+  let company = await service.getOne(companyId);
 
   if (!company) {
-    throw new QueryNotFound('company not found', 'id');
+    throw new QueryNotFound('company not found', 'companyId');
   }
 
-  company = await service.removeCompany(id);
+  company = await service.removeCompany(companyId);
 
   res.json({ success: true, data: { id: company.id } });
 }
 
 async function addClientAdminCompany(req, res) {
-  const companyId = parseInt(req.params.id);
+  const companyId = parseInt(req.params.companyId);
   const { id, ...userData } = req.body;
   const userId = parseInt(id);
 
@@ -79,7 +79,7 @@ async function addClientAdminCompany(req, res) {
   let company = await companyService.getOne(companyId);
 
   if (!company) {
-    throw new QueryNotFound('company not found', 'id');
+    throw new QueryNotFound('company not found', 'companyId');
   }
 
   if (!userId) {

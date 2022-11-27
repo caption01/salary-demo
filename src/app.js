@@ -28,8 +28,8 @@ function run(port) {
 
   // private-routers
   app.use('/me', meRouter);
+  app.use('/company/:companyId/employee', employeeRouter);
   app.use('/company', companyRouter);
-  app.use('/employee', employeeRouter);
 
   app.all('*', (req, res) => {
     throw new NotFoundError();
