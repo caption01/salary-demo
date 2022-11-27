@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  db:
+    container_name: db
+    image: postgres:14
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - db:/var/lib/postgresql/data
+
+  server:
+    container_name: server
+    build:
+      context: .
+      dockerfile: dockerfile
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+      - 5555:5555
+    volumes:
+      - ./src:/usr/src/app/src
+      - ./tmp:/usr/src/app/tmp
+      - ./prisma:/usr/src/app/prisma
+    env_file:
+      - .env
+    command:
+      - /bin/sh
+      - -c
+      - |
+        npx prisma migrate deploy &&
+        npx prisma db seed &&
+        npx prisma studio &>/dev/null &&
+        npm run dev
+
+volumes:
+  db:

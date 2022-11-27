@@ -2,54 +2,51 @@
 
 
 ### TO Get All Employees in Company
-GET http://localhost:3000/company/3/employee
+GET http://localhost:3000/company/2/employee
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyLCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJqb2huIiwibGFzdG5hbWUiOiJuYXRhY2hhIiwicm9sZSI6IkNMSUVOVF9BRE1JTiIsInJvbGVMZXZlbCI6MTB9LCJpYXQiOjE2Njk1NjY1NDAsImV4cCI6MTY2OTU3NzM0MH0.erlIs-3NIX-kBi79MpIO0QrtomgHkmEDqUVL15GIIgs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo2LCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJjMl9hZG1pbjFfZiIsImxhc3RuYW1lIjoiYzJfYWRtaW4xX2wiLCJyb2xlIjoiQ0xJRU5UX0FETUlOIiwicm9sZUxldmVsIjoxMH0sImlhdCI6MTY2OTU2OTAwMywiZXhwIjoxNjY5NTc5ODAzfQ.cmGEAAXPKcV9oorf42qPsXTbl3nnp8ramWfaMttq8H0
 
 
 ### TO Get A Employee in Company
-GET http://localhost:3000/company/3/employee?employeeId=10
+GET http://localhost:3000/company/2/employee?employeeId=10
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyLCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJqb2huIiwibGFzdG5hbWUiOiJuYXRhY2hhIiwicm9sZSI6IkNMSUVOVF9BRE1JTiIsInJvbGVMZXZlbCI6MTB9LCJpYXQiOjE2Njk1NjY1NDAsImV4cCI6MTY2OTU3NzM0MH0.erlIs-3NIX-kBi79MpIO0QrtomgHkmEDqUVL15GIIgs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo2LCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJjMl9hZG1pbjFfZiIsImxhc3RuYW1lIjoiYzJfYWRtaW4xX2wiLCJyb2xlIjoiQ0xJRU5UX0FETUlOIiwicm9sZUxldmVsIjoxMH0sImlhdCI6MTY2OTU2OTAwMywiZXhwIjoxNjY5NTc5ODAzfQ.cmGEAAXPKcV9oorf42qPsXTbl3nnp8ramWfaMttq8H0
 
 
 ### To Create a New Employee For A Company
-POST http://localhost:3000/company/3/employee
+POST http://localhost:3000/company/2/employee
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyLCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJqb2huIiwibGFzdG5hbWUiOiJuYXRhY2hhIiwicm9sZSI6IkNMSUVOVF9BRE1JTiIsInJvbGVMZXZlbCI6MTB9LCJpYXQiOjE2Njk1NjY1NDAsImV4cCI6MTY2OTU3NzM0MH0.erlIs-3NIX-kBi79MpIO0QrtomgHkmEDqUVL15GIIgs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo2LCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJjMl9hZG1pbjFfZiIsImxhc3RuYW1lIjoiYzJfYWRtaW4xX2wiLCJyb2xlIjoiQ0xJRU5UX0FETUlOIiwicm9sZUxldmVsIjoxMH0sImlhdCI6MTY2OTU2OTAwMywiZXhwIjoxNjY5NTc5ODAzfQ.cmGEAAXPKcV9oorf42qPsXTbl3nnp8ramWfaMttq8H0
 
 {
-    "username": "c3_employee1",
-    "password": "c3_employee1_123",
-    "firstname": "c3_employee1_f",
-    "lastname": "c3_employee1_l",
+    "username": "c2_employee1",
+    "password": "c2_employee1_123",
+    "firstname": "c2_employee1_f",
+    "lastname": "c2_employee1_l",
     "baseSalary": 50000
 }
 
 
 ### To Update A Employee For A Company (can update some fileds)
-PUT http://localhost:3000/company/3/employee/10
+PUT http://localhost:3000/company/2/employee/4
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyLCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJqb2huIiwibGFzdG5hbWUiOiJuYXRhY2hhIiwicm9sZSI6IkNMSUVOVF9BRE1JTiIsInJvbGVMZXZlbCI6MTB9LCJpYXQiOjE2Njk1NjY1NDAsImV4cCI6MTY2OTU3NzM0MH0.erlIs-3NIX-kBi79MpIO0QrtomgHkmEDqUVL15GIIgs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo2LCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJjMl9hZG1pbjFfZiIsImxhc3RuYW1lIjoiYzJfYWRtaW4xX2wiLCJyb2xlIjoiQ0xJRU5UX0FETUlOIiwicm9sZUxldmVsIjoxMH0sImlhdCI6MTY2OTU2OTAwMywiZXhwIjoxNjY5NTc5ODAzfQ.cmGEAAXPKcV9oorf42qPsXTbl3nnp8ramWfaMttq8H0
 
 {
-    "password": "c3_employee1_123",
-    "firstname": "c3_employee1_f_u",
-    "lastname": "c3_employee1_l_u",
-    "baseSalary": 18000
+    "baseSalary": 70000
 }
 
 
 ### To Delete A Employee
-DELETE http://localhost:3000/company/3/employee/10
+DELETE http://localhost:3000/company/2/employee/4
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyLCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJqb2huIiwibGFzdG5hbWUiOiJuYXRhY2hhIiwicm9sZSI6IkNMSUVOVF9BRE1JTiIsInJvbGVMZXZlbCI6MTB9LCJpYXQiOjE2Njk1NjY1NDAsImV4cCI6MTY2OTU3NzM0MH0.erlIs-3NIX-kBi79MpIO0QrtomgHkmEDqUVL15GIIgs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo2LCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJjMl9hZG1pbjFfZiIsImxhc3RuYW1lIjoiYzJfYWRtaW4xX2wiLCJyb2xlIjoiQ0xJRU5UX0FETUlOIiwicm9sZUxldmVsIjoxMH0sImlhdCI6MTY2OTU2OTAwMywiZXhwIjoxNjY5NTc5ODAzfQ.cmGEAAXPKcV9oorf42qPsXTbl3nnp8ramWfaMttq8H0
 
 
 ### To Import Employees For A Company
-POST http://localhost:3000/company/1/employee/import
+POST http://localhost:3000/company/2/employee/import
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoyLCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJqb2huIiwibGFzdG5hbWUiOiJuYXRhY2hhIiwicm9sZSI6IkNMSUVOVF9BRE1JTiIsInJvbGVMZXZlbCI6MTB9LCJpYXQiOjE2Njk1NjY1NDAsImV4cCI6MTY2OTU3NzM0MH0.erlIs-3NIX-kBi79MpIO0QrtomgHkmEDqUVL15GIIgs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo2LCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJjMl9hZG1pbjFfZiIsImxhc3RuYW1lIjoiYzJfYWRtaW4xX2wiLCJyb2xlIjoiQ0xJRU5UX0FETUlOIiwicm9sZUxldmVsIjoxMH0sImlhdCI6MTY2OTU2OTAwMywiZXhwIjoxNjY5NTc5ODAzfQ.cmGEAAXPKcV9oorf42qPsXTbl3nnp8ramWfaMttq8H0
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="file"; filename="employees.mock.csv"

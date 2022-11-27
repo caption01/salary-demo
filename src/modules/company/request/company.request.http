@@ -38,15 +38,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxL
 
 
 ### To Create A New ClientAdmin And Add to Company (create new user)
-POST    http://localhost:3000/company/3/admin
+POST    http://localhost:3000/company/2/admin
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeSIsImxhc3RuYW1lIjoiaGVybyIsInJvbGUiOiJTVVBFUl9BRE1JTiIsInJvbGVMZXZlbCI6MX0sImlhdCI6MTY2OTU2NTY5MSwiZXhwIjoxNjY5NTc2NDkxfQ.kPD_lWNu7yuoA7ISRGrGkJphi5bo-zHN_CJ32raK-2o
 
 {
-    "username": "c3_admin1",
-    "password": "c3_admin1_123",
-    "firstname": "c3_admin1_f",
-    "lastname": "c3_admin1_l"
+    "username": "c2_admin1",
+    "password": "c2_admin1_123",
+    "firstname": "c2_admin1_f",
+    "lastname": "c2_admin1_l"
 }
 
 

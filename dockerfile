@@ -1,6 +1,8 @@
 FROM node:lts
 
 ARG DATABASE_URL
+ARG APP_PORT
+ARG APP_SECRET
 
 RUN apt-get update
 RUN apt-get install -y openssl
@@ -13,7 +15,9 @@ COPY package*.json ./
 # RUN npm ci --only=production
 RUN npm install
 
-RUN echo $DATABASE_URL > .env
+RUN echo $DATABASE_URL >> .env
+RUN echo $APP_PORT >> .env
+RUN echo $APP_SECRET >> .env
 
 COPY . .
 
@@ -23,4 +27,4 @@ RUN npx prisma generate --schema ./prisma/schema.prisma
 
 EXPOSE 3000
 
-CMD [ "npm", "run", "start:dev" ]
+CMD [ "npm", "run", "dev" ]
