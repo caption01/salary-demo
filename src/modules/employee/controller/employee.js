@@ -19,7 +19,10 @@ async function getEmployee(req, res) {
     return;
   }
 
-  const employee = await employeeService.getOne(employeeId, companyId);
+  const employee = await employeeService.getOneByEmployeeId(
+    employeeId,
+    companyId
+  );
 
   if (!employee) {
     throw new QueryNotFound('Employee not found in this company', 'employeeId');
@@ -61,7 +64,7 @@ async function updateEmployee(req, res) {
   const employeeId = parseInt(req.params.employeeId);
   const employeeData = req.body;
 
-  let employee = await employeeService.getOne(employeeId);
+  let employee = await employeeService.getOneByEmployeeId(employeeId);
 
   if (!employee) {
     throw new QueryNotFound('Employee not found', 'employeeId');
@@ -93,7 +96,7 @@ async function deleteEmployee(req, res) {
 
   const employeeId = parseInt(req.params.employeeId);
 
-  let employee = await employeeService.getOne(employeeId);
+  let employee = await employeeService.getOneByEmployeeId(employeeId);
 
   if (!employee) {
     throw new QueryNotFound('Employee not found', 'employeeId');

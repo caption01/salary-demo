@@ -10,15 +10,16 @@ async function createTransfer(req, res) {
   const transferService = new TransferService();
   const employeeService = new EmployeeService();
 
-  const employeeId = parseInt(req.params.employeeId);
+  // const employeeId = parseInt(req.params.employeeId);
+  const userId = parseInt(req.user.data.id);
   const companyId = parseInt(req.params.companyId);
   const amount = req.body.amount;
   const date = req.body.date;
 
-  const employee = await employeeService.getOne(employeeId);
+  const employee = await employeeService.getOneByUserId(userId, companyId);
 
   if (!employee) {
-    throw new QueryNotFound('Employee not found.', 'employeeId');
+    throw new QueryNotFound('Employee not found.');
   }
 
   const canRequest = await transferService.canRequest(employee, {
@@ -36,7 +37,7 @@ async function createTransfer(req, res) {
     amount: amount,
     date: convertDateStringToIso(date),
     companyId: companyId,
-    employeeId: employeeId,
+    employeeId: employee.id,
   };
 
   const transaction = await transferService.createTransaction(transfer);

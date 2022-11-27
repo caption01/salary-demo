@@ -3,8 +3,8 @@ POST http://localhost:3000/signin
 Content-Type: application/json
 
 {
-    "username": "apple_employee1",
-    "password": "apple_employee1_123"
+    "username": "apple_employee2",
+    "password": "apple_employee2_123"
 }
 
 # salaryhero

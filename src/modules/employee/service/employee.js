@@ -20,10 +20,29 @@ class EmployeeService {
     return await new Employee().findAll(findAllArgs);
   }
 
-  async getOne(employeeId, companyId) {
+  async getOneByEmployeeId(employeeId, companyId) {
     const findArgs = {
       where: {
         id: employeeId,
+        companyId: companyId,
+      },
+      include: {
+        user: {
+          select: {
+            firstname: true,
+            lastname: true,
+          },
+        },
+      },
+    };
+
+    return await new Employee().fineOne(findArgs);
+  }
+
+  async getOneByUserId(userId, companyId) {
+    const findArgs = {
+      where: {
+        userId: userId,
         companyId: companyId,
       },
       include: {

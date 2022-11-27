@@ -1,11 +1,11 @@
 ### Signin
-POST http://localhost:3000/company/1/employee/1/transfer
+POST http://localhost:3000/company/1/transfer
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozLCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJhcHBsZV9lbXBsb3llZTFfZiIsImxhc3RuYW1lIjoiYXBwbGVfZW1wbG95ZWUxX2wiLCJyb2xlIjoiRU1QTE9ZRUUiLCJyb2xlTGV2ZWwiOjEwMH0sImlhdCI6MTY2OTU2NjkxOCwiZXhwIjoxNjY5NTc3NzE4fQ.queT4oV_HUw6DuDdhPXnZxq7izRPi8oZB0RJKACBDak
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo0LCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJhcHBsZV9lbXBsb3llZTJfZiIsImxhc3RuYW1lIjoiYXBwbGVfZW1wbG95ZWUyX2wiLCJyb2xlIjoiRU1QTE9ZRUUiLCJyb2xlTGV2ZWwiOjEwMH0sImlhdCI6MTY2OTU2NzcxNiwiZXhwIjoxNjY5NTc4NTE2fQ.OgCep5TnZySWcluOZo89neyxPx0FI4KoCwEXihfeV_o
 
 
 {
-    "amount": 1,
-    "date": "2022-11-10"
+    "amount": 200,
+    "date": "2022-12-10"
 }
 
