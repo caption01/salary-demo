@@ -1,5 +1,5 @@
 const express = require('express');
-const { body } = require('express-validator');
+const { body, checkSchema } = require('express-validator');
 
 const { ROLE } = require('../../services/prisma');
 const roleGuard = require('../../middlewares/roleGuard/roleGuard');
@@ -16,9 +16,26 @@ const {
 
 const router = express.Router({ mergeParams: true });
 
+const adminSchema = {
+  username: {
+    isString: true,
+  },
+  password: {
+    isString: true,
+  },
+  firstname: {
+    isString: true,
+  },
+  lastname: {
+    isString: true,
+  },
+};
+
 const validate = {
   create: [body('name').isString()],
   update: [body('name').isString()],
+  addAdmin: checkSchema(adminSchema),
+  putAdmin: [body('userId').custom((value) => typeof value === 'number')],
 };
 
 router.use(roleGuard(ROLE.SUPER_ADMIN));
@@ -29,6 +46,18 @@ router.post('/', ...validate.create, validators, createCompany);
 router.put('/:companyId', ...validate.update, validators, updateCompany);
 router.delete('/:companyId', deleteCompany);
 
-router.post('/:companyId/admin', addClientAdminCompany);
+router.post(
+  '/:companyId/admin',
+  validate.addAdmin,
+  validators,
+  addClientAdminCompany
+);
+
+router.put(
+  '/:companyId/admin',
+  ...validate.putAdmin,
+  validators,
+  addClientAdminCompany
+);
 
 module.exports = router;

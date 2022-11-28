@@ -4,7 +4,9 @@ const CompanyAdminService = require('../service/companyAdmin');
 const UserService = require('../../signin/service/user');
 
 async function getAllCompany(req, res) {
-  const companies = await new CompanyService().getAll({
+  const companyService = await new CompanyService();
+
+  const companies = await companyService.getAll({
     include: { Employee: true, CompanyAdmin: true },
   });
 
@@ -12,8 +14,11 @@ async function getAllCompany(req, res) {
 }
 
 async function getCompany(req, res) {
+  const companyService = await new CompanyService();
+
   const companyId = parseInt(req.params.companyId);
-  const company = await new CompanyService().getOne(companyId, {
+
+  const company = await companyService.getOne(companyId, {
     include: { Employee: true, CompanyAdmin: true },
   });
 
@@ -25,20 +30,23 @@ async function getCompany(req, res) {
 }
 
 async function createCompany(req, res) {
-  const body = req.body;
-  const createArgs = { data: { name: body.name } };
+  const companyService = await new CompanyService();
 
-  const company = await new CompanyService().createCompany(createArgs);
+  const body = req.body;
+
+  const companyData = {
+    name: body.name,
+  };
+
+  const company = await companyService.createCompany(companyData);
 
   res.json({ success: true, data: company });
 }
 
 async function updateCompany(req, res) {
-  const companyId = parseInt(req.params.companyId);
-  const body = req.body;
-  const updateArgs = { data: { name: body.name } };
-
   const service = new CompanyService();
+
+  const companyId = parseInt(req.params.companyId);
 
   let company = await service.getOne(companyId);
 
@@ -46,15 +54,21 @@ async function updateCompany(req, res) {
     throw new QueryNotFound('company not found', 'companyId');
   }
 
-  company = await service.updateCompany(companyId, updateArgs);
+  const body = req.body;
+
+  const companyData = {
+    name: body.name,
+  };
+
+  company = await service.updateCompany(companyId, companyData);
 
   res.json({ success: true, data: company });
 }
 
 async function deleteCompany(req, res) {
-  const companyId = parseInt(req.params.companyId);
+  const service = await new CompanyService();
 
-  let service = await new CompanyService();
+  const companyId = parseInt(req.params.companyId);
 
   let company = await service.getOne(companyId);
 
@@ -68,13 +82,14 @@ async function deleteCompany(req, res) {
 }
 
 async function addClientAdminCompany(req, res) {
-  const companyId = parseInt(req.params.companyId);
-  let { userId, ...userData } = req.body;
-  userId = parseInt(userId);
-
   const companyService = new CompanyService();
   const companyAdminService = new CompanyAdminService();
   const userService = new UserService();
+
+  const companyId = parseInt(req.params.companyId);
+  let { userId, ...userData } = req.body;
+
+  userId = parseInt(userId);
 
   let company = await companyService.getOne(companyId);
 

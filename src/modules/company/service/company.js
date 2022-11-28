@@ -10,11 +10,17 @@ class CompanyService {
     return await new Company().findAll(findAllArgs);
   }
 
-  async createCompany(createArgs) {
+  async createCompany(companyData) {
+    const createArgs = {
+      data: { name: companyData.name },
+    };
+
     return await new Company().create(createArgs);
   }
 
-  async updateCompany(id, updateArgs) {
+  async updateCompany(id, companyData) {
+    const updateArgs = { data: { name: companyData.name } };
+
     const company = await Company.init(id);
     return await company.update(updateArgs);
   }
