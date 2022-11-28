@@ -5,7 +5,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxL
 
 
 ### To Get A Company
-GET http://localhost:3000/company/2
+GET http://localhost:3000/company/1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeWhlcm9fZiIsImxhc3RuYW1lIjoic2FsYXJ5aGVyb19sIiwicm9sZSI6IlNVUEVSX0FETUlOIiwicm9sZUxldmVsIjoxfSwiaWF0IjoxNjY5NjUwNzIwLCJleHAiOjE2Njk2NjE1MjB9.0vHZplL0Zbd3Azf_9iCQ3-VDZp1bTR8vMKKwAssAjmo
 
@@ -32,7 +32,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxL
 
 
 ### To Delete A Company
-DELETE   http://localhost:3000/company/3
+DELETE   http://localhost:3000/company/2
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeWhlcm9fZiIsImxhc3RuYW1lIjoic2FsYXJ5aGVyb19sIiwicm9sZSI6IlNVUEVSX0FETUlOIiwicm9sZUxldmVsIjoxfSwiaWF0IjoxNjY5NjUwNzIwLCJleHAiOjE2Njk2NjE1MjB9.0vHZplL0Zbd3Azf_9iCQ3-VDZp1bTR8vMKKwAssAjmo
 

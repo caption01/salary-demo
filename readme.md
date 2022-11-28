@@ -189,7 +189,7 @@ private routes
 
 | Method  | endpoint                                | description                                        |
 | ------- | --------------------------------------- | -------------------------------------------------- |
-| GET:    | /me                                     | to show your credentail                            |
+| GET:    | /me                                     | to show your credential                            |
 | GET:    | /company                                | to lists all companies.                            |
 | POST:   | /company                                | to create company.                                 |
 | GET:    | /company/:companyId                     | to get a company by companyId.                     |

@@ -2,12 +2,32 @@ const { Company } = require('../../../models');
 const { ROLE } = require('../../../services/prisma');
 
 class CompanyService {
-  async getOne(id, findArgs) {
-    return await new Company().find(id, findArgs);
+  async getOne(id, includeArgs) {
+    const findArgs = {
+      where: {
+        id: id,
+      },
+      ...includeArgs,
+    };
+    return await new Company().find(findArgs);
   }
 
   async getAll(findAllArgs) {
     return await new Company().findAll(findAllArgs);
+  }
+
+  async isCompanyNameValid(companyName) {
+    const findArgs = {
+      where: {
+        name: {
+          equals: companyName,
+        },
+      },
+    };
+
+    const found = await new Company().find(findArgs);
+
+    return !found;
   }
 
   async createCompany(companyData) {

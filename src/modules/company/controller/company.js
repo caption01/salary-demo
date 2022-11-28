@@ -38,6 +38,12 @@ async function createCompany(req, res) {
     name: body.name,
   };
 
+  const valid = await companyService.isCompanyNameValid(companyData.name);
+
+  if (!valid) {
+    throw new Error('Company name must unique');
+  }
+
   const company = await companyService.createCompany(companyData);
 
   res.json({ success: true, data: company });

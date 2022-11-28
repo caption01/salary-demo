@@ -21,11 +21,8 @@ class Company {
     return new Company(company);
   }
 
-  async find(id, findArgs) {
-    return await prisma.company.findFirst({
-      where: { id: id },
-      ...findArgs,
-    });
+  async find(findArgs) {
+    return await prisma.company.findFirst(findArgs);
   }
 
   async findAll(findAllArgs) {
