@@ -10,10 +10,9 @@ async function createTransfer(req, res) {
   const transferService = new TransferService();
   const employeeService = new EmployeeService();
 
-  // const employeeId = parseInt(req.params.employeeId);
   const userId = parseInt(req.user.data.id);
   const companyId = parseInt(req.params.companyId);
-  const amount = req.body.amount;
+  const amount = parseInt(req.body.amount);
   const date = req.body.date;
 
   const employee = await employeeService.getOneByUserId(userId, companyId);

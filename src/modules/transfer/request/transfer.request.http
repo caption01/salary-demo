@@ -1,11 +1,10 @@
-### Signin
+### To Create Transfer
 POST http://localhost:3000/company/1/transfer
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo0LCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJhcHBsZV9lbXBsb3llZTJfZiIsImxhc3RuYW1lIjoiYXBwbGVfZW1wbG95ZWUyX2wiLCJyb2xlIjoiRU1QTE9ZRUUiLCJyb2xlTGV2ZWwiOjEwMH0sImlhdCI6MTY2OTU2NzcxNiwiZXhwIjoxNjY5NTc4NTE2fQ.OgCep5TnZySWcluOZo89neyxPx0FI4KoCwEXihfeV_o
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjozLCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJhcHBsZV9lbXBsb3llZTFfZiIsImxhc3RuYW1lIjoiYXBwbGVfZW1wbG95ZWUxX2wiLCJyb2xlIjoiRU1QTE9ZRUUiLCJyb2xlTGV2ZWwiOjEwMH0sImlhdCI6MTY2OTY0NjY5NiwiZXhwIjoxNjY5NjU3NDk2fQ.W4H83075GuzjFKqFnTlxlHHasYgTlAcb8ZQhSzVqSZg
 
 {
-    "amount": 200,
+    "amount": 1,
     "date": "2022-12-10"
 }
 
