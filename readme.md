@@ -6,7 +6,7 @@
 
 ---
 
-1. node version 16.6.1
+1. Node version 16.6.1
 2. MacOS M1 Monterey 12.4
 3. Docker version 20.10.21
 
@@ -26,30 +26,42 @@ This is Database Diagram on this project.
 
 <img src='./asset/database-diagram.png'>
 
-I'm design each action base on **Role** of user which represent for authorization on that user.
+I'm design each action base on **Role** of user which represent for authorization on that user action.
 
-Base on requirement we have.
+Base on requirement so we have key points ...
 
-    3 roles on our project.
+- 3 roles on our project.
 
-    - superadmin-role
-    - clientadmin-role
-    - employee-role
+  - superadmin-role
+  - clientadmin-role
+  - employee-role
 
-    3 main api router with require role for control resources.
+<br >
 
-    - company,admin resource:   /company (require [superadmin-role])
-    - employee resource:        /company/:companyId/employee (require [superadmin-role, clientadmin-role])
-    - transfer resource:        /company/:companyId/transfer (require [superadmin-role, employee-role])
+- 3 main api router with require role for control resources.
 
-to summary api authorize (superadmin-role for debuging purpose!.).
+  - company,admin resource: /company (require [superadmin-role])
+  - employee resource: /company/:companyId/employee (require [superadmin-role, clientadmin-role])
+  - transfer resource: /company/:companyId/transfer (require [superadmin-role, employee-role])
 
-- for company, admin resource only superadmin-role can use.
-- for employee resource only superadmin-role and valid employee in that company can use.
-- for transfer resource only superadmin-role and self employee in that company can use.
+<br >
 
-- for role authorization i've create `roleGuard.js` which protect only user role pass condition can use api.
-- for company authorization i've create `companyGuard.js` which protect only user in company can use api.
+- CompanyAdmin Model and Employee Model to represent as user profile.
+
+<br>
+
+- **Date** field TrasferRequest Model for grouping and sum amount in each month.
+
+<br>
+
+- Summary api authorize (superadmin-role for debuging purpose!.).
+
+  - for company, admin resource only superadmin-role can use.
+  - for employee resource only superadmin-role and valid employee in that company can use.
+  - for transfer resource only superadmin-role and self employee in that company can use.
+
+  - for role authorization i've create `roleGuard.js` which protect only user role pass condition can use api.
+  - for company authorization i've create `companyGuard.js` which protect only user in company can use api.
 
 ## Project seed data with seed.js
 
@@ -63,9 +75,13 @@ for a convenient testing i've setup mock data in `seed.js` to mockup company, cl
   - CLIENT_ADMIN
   - EMPLOYEE
 
+<br >
+
 - company
 
   - name: APPLE
+
+<br >
 
 - superadmin
 
@@ -75,6 +91,8 @@ for a convenient testing i've setup mock data in `seed.js` to mockup company, cl
   - lastname: salaryhero_l
   - role: SUPER_ADMIN
 
+<br >
+
 - apple company admin user
 
   - username: apple_admin1
@@ -83,6 +101,8 @@ for a convenient testing i've setup mock data in `seed.js` to mockup company, cl
   - lastname: apple_admin1_l
   - role: CLIENT_ADMIN
   - company: APPLE
+
+<br >
 
 - apple company employees users.
 
@@ -112,6 +132,8 @@ for a convenient testing i've setup mock data in `seed.js` to mockup company, cl
     - lastname: apple_employee3_l
     - role: EMPLOYEE
     - company: APPLE
+
+<br >
 
 - transfer for each employee
 
@@ -149,6 +171,8 @@ for a convenient testing i've setup mock data in `seed.js` to mockup company, cl
 - 3. run seed data `npx prisma db seed` (run seed data only fresh app.)
 - 4. enjoy.
 
+<br >
+
 **this options provide your**
 
 - container run postgres database on port 5432.
@@ -169,7 +193,11 @@ for a convenient testing i've setup mock data in `seed.js` to mockup company, cl
 - 3. run seed data with `npx prisma db seed` (run seed data only fresh app.)
 - 5. [optional] run prisma studio (database monitoring) with `npx prisma studio`
 - 4. start server with `npm run dev`
-- 4. enjoy.
+- 5. enjoy.
+
+<br >
+
+**this options provide your**
 
 - container run postgres database on local port 5432.
 - local server start up on port 3000 (up to your env. default 3000)
@@ -257,6 +285,8 @@ in request directory in module are contain file with naming follow `***.request.
 1. prisma schema error from os system
 
 - prisma schema generator may raise an error from os system i suggest you set `binaryTargets` in `schema.prisma` by changing binaryTargets that suit your os by default value is native if value not provided.
+
+<br >
 
 please see ref.
 
