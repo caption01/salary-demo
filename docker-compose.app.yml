@@ -33,7 +33,6 @@ services:
       - -c
       - |
         npx prisma migrate deploy &&
-        npx prisma db seed &&
         npx prisma studio &>/dev/null &&
         npm run dev
 
