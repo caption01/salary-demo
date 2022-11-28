@@ -1,5 +1,6 @@
 const QueryNotFound = require('../../../middlewares/errors/error/queryNotfound');
 const EmployeeService = require('../service/employee');
+const UserService = require('../../signin/service/user');
 
 const {
   convertCsvFileToEmployees,
@@ -33,6 +34,7 @@ async function getEmployee(req, res) {
 
 async function createEmployee(req, res) {
   const employeeService = await new EmployeeService();
+  const userService = await new UserService();
 
   const currentUserId = parseInt(req.user.data.id);
   const companyId = parseInt(req.params.companyId);
@@ -47,6 +49,12 @@ async function createEmployee(req, res) {
     companyId: companyId,
     createdById: currentUserId,
   };
+
+  const unique = await userService.isUserUnique(employeeCreateData);
+
+  if (!unique) {
+    throw new QueryNotFound('Employee username must be unique');
+  }
 
   const employee = await employeeService.createNewEmployee(employeeCreateData);
 
