@@ -189,7 +189,7 @@ for a convenient testing i've setup mock data in `seed.js` to mockup company, cl
 **step run**
 
 - 1. start with `docker compose -f docker-compose.db.yml up`
-- 2. run migration with `npx prisma migrate dev`
+- 2. run migration with `npx prisma migrate deploy`
 - 3. run seed data with `npx prisma db seed` (run seed data only fresh app.)
 - 5. [optional] run prisma studio (database monitoring) with `npx prisma studio`
 - 4. start server with `npm run dev`

@@ -103,6 +103,9 @@ class CompanyService {
 
   async getAllUsersOf(id) {
     const findArgs = {
+      where: {
+        id: id,
+      },
       include: {
         Employee: {
           select: {
@@ -117,9 +120,7 @@ class CompanyService {
       },
     };
 
-    const company = await Company.init(id);
-
-    return await company.find(id, findArgs);
+    return await new Company().find(findArgs);
   }
 }
 
