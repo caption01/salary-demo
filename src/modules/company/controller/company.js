@@ -89,13 +89,10 @@ async function deleteCompany(req, res) {
 
 async function addClientAdminCompany(req, res) {
   const companyService = new CompanyService();
-  const companyAdminService = new CompanyAdminService();
   const userService = new UserService();
 
   const companyId = parseInt(req.params.companyId);
-  let { userId, ...userData } = req.body;
-
-  userId = parseInt(userId);
+  const userData = req.body;
 
   let company = await companyService.getOne(companyId);
 
@@ -103,37 +100,22 @@ async function addClientAdminCompany(req, res) {
     throw new QueryNotFound('company not found', 'companyId');
   }
 
-  if (!userId) {
-    const isUniqe = await userService.isUserUnique(userData);
+  const isUniqe = await userService.isUserUnique(userData);
 
-    if (!isUniqe) {
-      throw new Error('user data must be unique');
-    }
-
-    company = await companyService.createUserAdminAndAddToCompany(
-      companyId,
-      userData
-    );
-
-    return res.json({
-      success: true,
-      message: 'new admin are added to company',
-      data: company,
-    });
+  if (!isUniqe) {
+    throw new Error('user data must be unique');
   }
 
-  let companyAdmin = await companyAdminService.isAlreadyAdmin(
-    userId,
-    companyId
+  company = await companyService.createUserAdminAndAddToCompany(
+    companyId,
+    userData
   );
 
-  if (companyAdmin) {
-    throw new Error('This user are admin in this company already.');
-  }
-
-  await companyService.addUserAdminToCompany(companyId, userId);
-
-  res.json({ success: true, data: 'admin are added to company' });
+  return res.json({
+    success: true,
+    message: 'new admin are added to company',
+    data: company,
+  });
 }
 
 module.exports = {

@@ -49,12 +49,3 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxL
     "lastname": "c2_admin1_l"
 }
 
-
-### To Add Existing ClientAdmin To Company (add existing adminUser to company)
-PUT    http://localhost:3000/company/3/admin
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeWhlcm9fZiIsImxhc3RuYW1lIjoic2FsYXJ5aGVyb19sIiwicm9sZSI6IlNVUEVSX0FETUlOIiwicm9sZUxldmVsIjoxfSwiaWF0IjoxNjY5NjUwNzIwLCJleHAiOjE2Njk2NjE1MjB9.0vHZplL0Zbd3Azf_9iCQ3-VDZp1bTR8vMKKwAssAjmo
-
-{
-    "userId": 7
-}

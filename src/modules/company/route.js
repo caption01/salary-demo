@@ -35,7 +35,6 @@ const validate = {
   create: [body('name').isString()],
   update: [body('name').isString()],
   addAdmin: checkSchema(adminSchema),
-  putAdmin: [body('userId').custom((value) => typeof value === 'number')],
 };
 
 router.use(roleGuard(ROLE.SUPER_ADMIN));
@@ -49,13 +48,6 @@ router.delete('/:companyId', deleteCompany);
 router.post(
   '/:companyId/admin',
   validate.addAdmin,
-  validators,
-  addClientAdminCompany
-);
-
-router.put(
-  '/:companyId/admin',
-  ...validate.putAdmin,
   validators,
   addClientAdminCompany
 );
