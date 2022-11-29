@@ -50,6 +50,10 @@ Base on requirement so we have key points ...
 
 <br>
 
+- CompanyAdmin can use .csv file for import employees to company.
+
+<br>
+
 - **Date** field TrasferRequest Model for grouping and sum amount in each month.
 
 <br>
@@ -257,18 +261,37 @@ In every module i've setup api testing with client **REST Client** vscode extens
 
 in request directory in module are contain file with naming follow `***.request.http` open this file and click send under request (make sure that you are installed **REST Client**).
 
-    signin.request.http
+- signin.request.http
 
-    ```
-    ### Signin
-    POST http://localhost:3000/signin
-    Content-Type: application/json
+```
+### Signin
 
-    {
-        "username": "salaryhero",
-        "password": "salaryhero_123"
-    }
-    ```
+POST http://localhost:3000/signin
+Content-Type: application/json
+
+{
+    "username": "salaryhero",
+    "password": "salaryhero_123"
+}
+```
+
+for upload .csv file you can chage data in `employees.mock.csv`
+
+- employee.request.http
+
+```
+### To Import Employees For A Company
+
+POST http://localhost:3000/company/2/employee/import
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo2LCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJjMl9hZG1pbjFfZiIsImxhc3RuYW1lIjoiYzJfYWRtaW4xX2wiLCJyb2xlIjoiQ0xJRU5UX0FETUlOIiwicm9sZUxldmVsIjoxMH0sImlhdCI6MTY2OTY1MTM5NiwiZXhwIjoxNjY5NjYyMTk2fQ.Rf4w4gRdv_KqU-BfK_VTmOqWpa-kSDaYsRgNgBhpLGo
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="employees.mock.csv"
+
+< ./employees.mock.csv
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+```
 
 ## Useful command
 

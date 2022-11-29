@@ -27,7 +27,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeWhlcm9fZiIsImxhc3RuYW1lIjoic2FsYXJ5aGVyb19sIiwicm9sZSI6IlNVUEVSX0FETUlOIiwicm9sZUxldmVsIjoxfSwiaWF0IjoxNjY5NjUwNzIwLCJleHAiOjE2Njk2NjE1MjB9.0vHZplL0Zbd3Azf_9iCQ3-VDZp1bTR8vMKKwAssAjmo
 
 {
-    "name": "ORANGE_2"
+    "name": "PINE_APPLE_2"
 }
 
 
@@ -43,10 +43,10 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJpc1N1cGVyQWRtaW4iOnRydWUsImZpcnN0bmFtZSI6InNhbGFyeWhlcm9fZiIsImxhc3RuYW1lIjoic2FsYXJ5aGVyb19sIiwicm9sZSI6IlNVUEVSX0FETUlOIiwicm9sZUxldmVsIjoxfSwiaWF0IjoxNjY5NjUwNzIwLCJleHAiOjE2Njk2NjE1MjB9.0vHZplL0Zbd3Azf_9iCQ3-VDZp1bTR8vMKKwAssAjmo
 
 {
-    "username": "c2_admin3",
-    "password": "c2_admin3_123",
-    "firstname": "c2_admin3_f",
-    "lastname": "c2_admin3_l"
+    "username": "c2_admin1",
+    "password": "c2_admin1_123",
+    "firstname": "c2_admin1_f",
+    "lastname": "c2_admin1_l"
 }
 
 

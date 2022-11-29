@@ -19,10 +19,10 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo2LCJpc1N1cGVyQWRtaW4iOmZhbHNlLCJmaXJzdG5hbWUiOiJjMl9hZG1pbjFfZiIsImxhc3RuYW1lIjoiYzJfYWRtaW4xX2wiLCJyb2xlIjoiQ0xJRU5UX0FETUlOIiwicm9sZUxldmVsIjoxMH0sImlhdCI6MTY2OTY1MTM5NiwiZXhwIjoxNjY5NjYyMTk2fQ.Rf4w4gRdv_KqU-BfK_VTmOqWpa-kSDaYsRgNgBhpLGo
 
 {
-    "username": "c2_employee3",
-    "password": "c2_employee3_123",
-    "firstname": "c2_employee3_f",
-    "lastname": "c2_employee3_l",
+    "username": "c2_employee1",
+    "password": "c2_employee1_123",
+    "firstname": "c2_employee1_f",
+    "lastname": "c2_employee1_l",
     "baseSalary": 35000
 }
 
