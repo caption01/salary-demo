@@ -122,6 +122,9 @@ async function deleteEmployee(req, res) {
 async function importEmployees(req, res) {
   const employeeService = new EmployeeService();
 
+  const currentUserId = parseInt(req.user.data.id);
+  const companyId = parseInt(req.params.companyId);
+
   const csvFile = req.file;
   const employees = await convertCsvFileToEmployees(csvFile);
 
@@ -129,14 +132,11 @@ async function importEmployees(req, res) {
     throw new Error('employee data "username" must unique, please try agian');
   }
 
-  if (!(await isEmployeeDatabaseUnique(employees))) {
+  if (!(await isEmployeeDatabaseUnique(employees, companyId))) {
     throw new Error(
-      'employee "username" existing in database, please try agian'
+      'employee "username" existing in other company, please try agian'
     );
   }
-
-  const currentUserId = parseInt(req.user.data.id);
-  const companyId = parseInt(req.params.companyId);
 
   await employeeService.importEmployees(employees, companyId, currentUserId);
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const multer = require('multer');
-const { body, query, checkSchema } = require('express-validator');
+const { checkSchema } = require('express-validator');
 
 const { ROLE } = require('../../services/prisma');
 const roleGuard = require('../../middlewares/roleGuard/roleGuard');

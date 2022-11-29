@@ -7,10 +7,12 @@ async function signin(req, res, next) {
 
   const body = req.body;
 
-  const user = await userService.getOne({
+  const findArgs = {
     where: { username: body.username },
     include: { role: { select: { id: true, level: true, role: true } } },
-  });
+  };
+
+  const user = await userService.getOne(findArgs);
 
   if (!user) {
     throw new QueryNotfound('user not found', 'username');

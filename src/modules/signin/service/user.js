@@ -16,19 +16,6 @@ class UserService {
 
     return !foundUser;
   }
-
-  async isCanUpsert(userData) {
-    const findAllArgs = {
-      where: {
-        username: userData.username,
-      },
-    };
-
-    const users = await new User().findAll(findAllArgs);
-    const canNotUpsert = !users || users.length > 1;
-
-    return !canNotUpsert;
-  }
 }
 
 module.exports = UserService;

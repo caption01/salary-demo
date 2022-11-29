@@ -1,4 +1,5 @@
 const UserService = require('../../signin/service/user');
+const EmployeeService = require('../../employee/service/employee');
 const { read } = require('../../../utils/csv');
 
 const USERNAME = 0;
@@ -42,18 +43,34 @@ async function isEmployeeDataUnique(employees = []) {
   return usernames.length === usernameUniques.length;
 }
 
-async function isEmployeeDatabaseUnique(employees = []) {
+async function isEmployeeDatabaseUnique(employees = [], companyId) {
   const userService = new UserService();
+  const employeeService = new EmployeeService();
 
-  employees.forEach(async (employee) => {
-    const can = await userService.isCanUpsert(employee);
+  let pass = true;
 
-    if (!can) {
-      return false;
+  for (let employee of employees) {
+    const findArgs = {
+      where: {
+        username: employee.username,
+      },
+    };
+
+    const user = await userService.getOne(findArgs);
+
+    if (user) {
+      const isEmployeeInCompany = await employeeService.getOneByUserId(
+        user.id,
+        companyId
+      );
+
+      if (!isEmployeeInCompany) {
+        pass = false;
+      }
     }
-  });
+  }
 
-  return true;
+  return pass;
 }
 
 module.exports = {
